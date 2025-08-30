@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kursus Digital Microsoft Office - Sertifikat Resmi LKP</title>
+  <meta name="description" content="Belajar Microsoft Office (Word, Excel, PowerPoint) dari dasar hingga mahir. Kursus digital bersertifikat resmi LKP, cocok untuk CPNS & perusahaan." />
+  <meta name="keywords" content="kursus Microsoft Office, kursus Word, kursus Excel, kursus PowerPoint, kursus online, sertifikat LKP" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <style>
+ <style>
     :root {
       --primary: #0078D4;
       --secondary: #005A9E;
@@ -299,6 +301,15 @@
     }
   </style>
 </head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX'); // Ganti dengan Measurement ID GA4
+  </script>
+</head>
 <body>
 
   <!-- Hero Section -->
@@ -496,7 +507,7 @@
       </div>
     </div>
   </section>
-
+  
   <!-- Harga & Checkout -->
   <section class="pricing" id="checkout">
     <div class="container">
@@ -536,7 +547,7 @@
         <p><strong>Nama:</strong> <span id="confName"></span></p>
         <p><strong>Email:</strong> <span id="confEmail"></span></p>
         <p><strong>No. WhatsApp:</strong> <span id="confWa"></span></p>
-        <p><strong>Total Tagihan:</strong> Rp99.000</p>
+        <p><strong>Total Tagihan:</strong> <span id="totalAmount"></span></p>
       </div>
 
       <p><strong>Transfer ke:</strong><br>
@@ -561,12 +572,15 @@
 
   <!-- JavaScript -->
   <script>
+    // Harga di client — ubah di sini kalau mau tampil beda di laman
+    const HARGA = 99000; // dalam rupiah
+
     // Generate Order ID
     function generateOrderId() {
       return 'ORD-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000);
     }
 
-    // Toggle Curriculum
+    // Toggle Curriculum (placeholder)
     function toggleContent(id) {
       const element = document.getElementById(id);
       if (element.style.display === 'none' || element.style.display === '') {
@@ -593,10 +607,11 @@
         email: email,
         wa: wa,
         status: 'Belum Bayar',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        harga: HARGA
       };
 
-      try { 
+      try {
         await fetch('https://script.google.com/macros/s/AKfycbyM9SeQusJBhKAdcKvOlEGmKKqkpeDh1SH726c2UkAvodLWakGgt5DUpZ19ToN2syGO/exec', {
           method: 'POST',
           mode: 'no-cors',
@@ -604,38 +619,17 @@
           body: JSON.stringify(payload)
         });
       } catch (error) {
-        console.log("Data mungkin tetap terkirim meski error karena no-cors");
+        console.log("Data mungkin tetap terkirim meski error karena no-cors", error);
       }
 
       // Tampilkan konfirmasi
       showConfirmation(orderId, name, email, wa);
 
       // 🔥 KIRIM TAGIHAN OTOMATIS KE WHATSAPP PEMBELI
-      const message = encodeURIComponent(`
-Hai ${name}! 🎉
-Terima kasih sudah mendaftar Kursus Digital Microsoft Office!
+      const formattedHarga = HARGA.toLocaleString('id-ID');
+      const message = encodeURIComponent(`Hai ${name}! 🎉\nTerima kasih sudah mendaftar Kursus Digital Microsoft Office!\n\nSilakan lakukan pembayaran sebesar *Rp${formattedHarga}* ke rekening berikut:\n\nBCA: 7642314699 a.n. Agus Tridoso\nMandiri: 1260005217186 a.n. Agus Tridoso\nDANA: 081905963754\n\n📝 Order ID: ${orderId}\n📧 Email: ${email}\n💰 Total Tagihan: Rp${formattedHarga}\n\nSetelah transfer, kirim bukti transfer ke admin untuk aktivasi. Semangat belajar! 💻✨`);
 
-Berikut TAGIHAN PESANAN Kursus Digital Microsoft Office!
-${name}, silakan kirim BUKTI TRANSFER.
-💰 TRANSFER PAS Rp99.000 
-
-Ke Rekening Dibawah ini:
-
-💳 BCA    : 764 2314 699 a.n. Agus Tridoso
-💳 Mandiri: 126 000 5217186 a.n. Agus Tridoso
-💳 DANA   : 0819 0596 3754
-
-
-📝 *Order ID:* ${orderId}
-📧 *Email:* ${email}
-💰 Total Tagihan: Rp100.000
-
-Setelah transfer, konfirmasi ke sini ya. Untuk mengaktifkan akun mu!
-
-Semangat belajar! 💻✨
-      `);
-
-      const userWaUrl = `https://wa.me/${waFormatted}`;
+      const userWaUrl = `https://wa.me/${waFormatted}?text=${message}`;
       window.open(userWaUrl, '_blank');
     });
 
@@ -644,6 +638,7 @@ Semangat belajar! 💻✨
       document.getElementById('confName').textContent = name;
       document.getElementById('confEmail').textContent = email;
       document.getElementById('confWa').textContent = wa;
+      document.getElementById('totalAmount').textContent = 'Rp' + HARGA.toLocaleString('id-ID');
 
       document.getElementById('checkout').style.display = 'none';
       document.getElementById('confirmation').style.display = 'block';
@@ -652,4 +647,3 @@ Semangat belajar! 💻✨
   </script>
 </body>
 </html>
-
