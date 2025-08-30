@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kursus Digital Microsoft Office - Sertifikat Resmi LKP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #0078D4;
+      --secondary: #005A9E;
+      --light: #F5F9FF;
+      --dark: #1E1E1E;
+      --gray: #6C757D;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+      background-color: #fff;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    section {
+      padding: 80px 0;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0078D4 0%, #005A9E 100%);
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Benefit Section */
+    .benefits {
+      background: var(--light);
+      text-align: center;
+    }
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+    .benefit-item {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .benefit-item i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .benefit-item h3 {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .faq {
+      margin-top: 50px;
+      text-align: left;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .faq-item {
+      margin-bottom: 15px;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .faq-item strong {
+      color: var(--primary);
+    }
+
+    /* Curriculum Section */
+    .curriculum {
+      background: #f9fafa;
+      padding: 80px 0;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+    .card-header h3 {
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+    .badge {
+      background: #0078D4;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+    .card-body {
+      padding: 20px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .material-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .material-list li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #eee;
+    }
+    .material-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* Testimoni */
+    .testimonials {
+      text-align: center;
+      background: white;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    .testimonial {
+      background: var(--light);
+      padding: 25px;
+      border-radius: 12px;
+      position: relative;
+    }
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 15px;
+      border: 3px solid var(--primary);
+    }
+    .rating {
+      color: #FFD700;
+      font-size: 1.3rem;
+      margin: 10px 0;
+    }
+    .testimonial p {
+      font-style: italic;
+      color: var(--gray);
+    }
+    .name {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    /* Harga & Checkout */
+    .pricing {
+      background: var(--light);
+      text-align: center;
+    }
+    .price-box {
+      background: white;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .price-original {
+      text-decoration: line-through;
+      color: var(--gray);
+      font-size: 1.2rem;
+    }
+    .price-current {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 10px 0;
+    }
+    .checkout-form {
+      margin-top: 30px;
+      text-align: left;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    /* Konfirmasi Pembayaran */
+    .confirmation {
+      display: none;
+      text-align: center;
+      background: #e8f5e9;
+      padding: 60px 20px;
+      border-radius: 12px;
+      margin: 40px auto;
+      max-width: 700px;
+    }
+    .confirmation h2 {
+      color: #2E7D32;
+    }
+    .order-details {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      text-align: left;
+    }
+    .order-details p {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+    .whatsapp-btn {
+      background: #25D366;
+      margin-top: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+      font-size: 0.9rem;
+    }
+    footer p {
+      margin: 5px 0;
+    }
+    footer .npsn {
+      font-weight: 600;
+      color: #00BFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <h1>Belajar MS Office, Melalui Video Pembelajaran Kursus Digital!</h1>
+      <p>Belajar Word, Excel, dan PowerPoint dari dasar hingga mahir. Bersertifikat dan Resmi dari LKP (Lembaga Kursus dan Pendidikan), Bisa Untuk Lamar CPNS dan juga Perusahaan.</p>
+      <a href="#curriculum" class="btn">Lihat Materi Lengkap</a>
+    </div>
+  </section>
+
+  <!-- Benefit Section -->
+  <section class="benefits">
+    <div class="container">
+      <h2>Kenapa Harus Ikut Kursus Ini?</h2>
+      
+      <div class="benefit-grid">
+        <div class="benefit-item">
+          <i class="fas fa-file-alt"></i>
+          <h3>Microsoft Word</h3>
+          <p>Kuasai pembuatan dokumen, surat, laporan, dan format resmi sesuai standar instansi.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-table"></i>
+          <h3>Microsoft Excel</h3>
+          <p>Data, rumus, pivot table, grafik, hingga pembuatan laporan keuangan & statistik.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-presentation"></i>
+          <h3>Microsoft PowerPoint</h3>
+          <p>Cara buat presentasi profesional yang menarik dan efektif untuk kerja atau sekolah.</p>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="faq">
+        <div class="faq-item">
+          <strong>Bagaimana Metode Belajarnya?</strong>
+          <p>Belajar via video di website kami dan ada kuis pilihan ganda. Bisa konsultasi di grup WhatsApp member.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Kapan Dapat E-Sertifikatnya?</strong>
+          <p>Setelah menyelesaikan semua video dan kuis, otomatis kamu dapat e-sertifikat resmi.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Bisa Dibereskan Dalam Sehari?</strong>
+          <p>Bisa! Total durasi video hanya 6 jam. Bisa diselesaikan dalam setengah hari.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Apakah Ada Deadline?</strong>
+          <p>Tidak ada! Akses selamanya selama platform aktif. Tapi sebaiknya segera selesaikan agar cepat dapat sertifikat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum Section -->
+  <section class="curriculum" id="curriculum">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 40px;">Daftar Materi Lengkap</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: #555;">
+        Ini adalah transformasi skill yang <strong>kamu butuhkan untuk sukses</strong> di dunia kerja, CPNS, atau bisnis. 
+        Setiap materi dirancang sistematis: dari dasar hingga tingkat lanjut. 
+        Total ada <strong>59 materi</strong> yang akan kamu pelajari, lengkap dengan kuis di setiap akhir modul.
+      </p>
+
+      <!-- Card Microsoft Word -->
+      <div class="card" onclick="toggleContent('word')">
+        <div class="card-header">
+          <h3><i class="fas fa-file-alt"></i> Microsoft Word</h3>
+          <span class="badge">17 Materi</span>
+        </div>
+        <div class="card-body" id="word" style="display: none;">
+          <ul class="material-list">
+            <li>1 Mengenal Office Word</li>
+            <li>2 Page Setup</li>
+            <li>3 Text</li>
+            <li>4 Heading</li>
+            <li>5 Daftar Isi</li>
+            <li>6 Indent and Ruler</li>
+            <li>7 Bullet and Numbering</li>
+            <li>8 Spacing</li>
+            <li>9 Tabel</li>
+            <li>10 Page Number</li>
+            <li>11 Header and Footer</li>
+            <li>12 WordArt</li>
+            <li>13 Picture and Shape</li>
+            <li>14 Smart Art and Chart</li>
+            <li>15 Equation and Symbol</li>
+            <li>16 Arahan Sebelum Mengikuti Tes</li>
+            <li>17 Tes Pilihan Ganda MS Word</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card Microsoft Excel -->
+      <div class="card" onclick="toggleContent('excel')">
+        <div class="card-header">
+          <h3><i class="fas fa-table"></i> Microsoft Excel</h3>
+          <span class="badge">21 Materi</span>
+        </div>
+        <div class="card-body" id="excel" style="display: none;">
+          <ul class="material-list">
+            <li>1 Jenis-jenis Data Pada Excel Part 1</li>
+            <li>2 Jenis-jenis Data Pada Excel Part 2</li>
+            <li>3 Mengenal Baris dan Kolom Part 1</li>
+            <li>4 Mengenal Baris dan Kolom Part 2</li>
+            <li>5 Mengenal Baris dan Kolom Part 3</li>
+            <li>6 Worksheet</li>
+            <li>7 Paste Special Part 1</li>
+            <li>8 Paste Special Part 2</li>
+            <li>9 Remove Duplicate Part 1</li>
+            <li>10 Remove Duplicate Part 2</li>
+            <li>11 Common Function: SUM AVERAGE MIN MAX</li>
+            <li>12 VLOOKUP dan HLOOKUP</li>
+            <li>13 PIVOT TABLE</li>
+            <li>14 IF Tunggal dan Bertingkat Part 1</li>
+            <li>15 IF Tunggal dan Bertingkat Part 2</li>
+            <li>16 Chart</li>
+            <li>17 Fungsi SUMIF SUMIFS</li>
+            <li>18 Fungsi Pada Teks</li>
+            <li>19 COUNT COUNTA COUNTIF COUNTIFS</li>
+            <li>20 DATEDIF</li>
+            <li>21 Tes Pilihan Ganda MS Excel</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card Microsoft PowerPoint -->
+      <div class="card" onclick="toggleContent('powerpoint')">
+        <div class="card-header">
+          <h3><i class="fas fa-presentation"></i> Microsoft PowerPoint</h3>
+          <span class="badge">21 Materi</span>
+        </div>
+        <div class="card-body" id="powerpoint" style="display: none;">
+          <ul class="material-list">
+            <li>1 Pengenalan PowerPoint (Menu dan Toolbar Bag.1)</li>
+            <li>2 Pengenalan PowerPoint (Menu dan Toolbar Bag.2)</li>
+            <li>3 Penyusunan Slide</li>
+            <li>4 Menambahkan Teks</li>
+            <li>5 Menambahkan Gambar</li>
+            <li>6 Penggunaan Shape dan SmartArt</li>
+            <li>7 Menambahkan Video dan Audio</li>
+            <li>8 Animasi Dasar</li>
+            <li>9 Transisi Slide</li>
+            <li>10 Animasi Lanjutan</li>
+            <li>11 Transisi Canggih</li>
+            <li>12 Grafik dan Analisis Data</li>
+            <li>13 Mengintegrasikan dengan Excel</li>
+            <li>14 Menggunakan template Desain dan Layout</li>
+            <li>15 Desain Slide Kreatif</li>
+            <li>16 Mastering Slide Master</li>
+            <li>17 Animasi dan Transisi Ekspert</li>
+            <li>18 Data Visualisasi Lanjutan</li>
+            <li>19 Powerpoint proposal bisnis</li>
+            <li>20 Presentasi proposal kreatif</li>
+            <li>21 Tes Pilihan Ganda MS Power Point</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CTA di Akhir Curriculum -->
+      <div style="text-align: center; margin-top: 50px;">
+        <p style="color: #555; font-size: 1.1rem; margin-bottom: 20px;">
+          <strong>Siap tingkatkan skill MS Office kamu dan dapatkan sertifikat resmi?</strong>
+        </p>
+        <a href="#checkout" class="btn" target="_blank">Lanjutkan ke Pembayaran →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimoni -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>Apa Kata Mereka yang Sudah Lulus?</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <img src="https://i.pravatar.cc/150?img=1" alt="User" class="avatar">
+          <div class="rating">★★★★★</div>
+          <p>"Materinya jelas dan mudah dipahami. Langsung bisa saya terapkan di kantor untuk laporan bulanan. Sertifikatnya juga cepat keluar!"</p>
+          <div class="name">– Rina, Staf Administrasi</div>
+        </div>
+        <div class="testimonial">
+          <img src="https://i.pravatar.cc/150?img=5" alt="User" class="avatar">
+          <div class="rating">★★★★★</div>
+          <p>"Awalnya ragu belajar online, tapi ternyata sangat efektif. Quiz-nya membantu mengukur pemahaman. Recommended!"</p>
+          <div class="name">– Andi, Calon CPNS</div>
+        </div>
+        <div class="testimonial">
+          <img src="https://i.pravatar.cc/150?img=8" alt="User" class="avatar">
+          <div class="rating">★★★★★</div>
+          <p>"Belajar sambil kerja jadi mudah. Bisa buka kapan saja. Sekarang saya lebih percaya diri saat presentasi."</p>
+          <div class="name">– Dina, Guru SMK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Harga & Checkout -->
+  <section class="pricing" id="checkout">
+    <div class="container">
+      <h2>Investasi Belajar yang Sangat Terjangkau</h2>
+      <div class="price-box">
+        <p class="price-original">Rp350.000</p>
+        <p class="price-current">Rp99.000</p>
+        <p><small>Sekali bayar, akses selamanya. Nilai kurang? Bisa ulang tes sampai 5x!</small></p>
+
+        <form id="checkoutForm" class="checkout-form">
+          <div class="form-group">
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" name="name" placeholder="Contoh: Budi Santoso" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Contoh: budi@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="wa">No. WhatsApp</label>
+            <input type="tel" id="wa" name="wa" placeholder="Contoh: 081234567890" required />
+          </div>
+          <button type="submit" class="btn">Lanjutkan Proses</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Konfirmasi Pembayaran -->
+  <div class="container">
+    <div id="confirmation" class="confirmation">
+      <h2>Selamat, Kamu Tinggal Selangkah Lagi!</h2>
+      <p>Silakan lakukan pembayaran agar kamu bisa mulai kursus ini.</p>
+
+      <div class="order-details">
+        <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+        <p><strong>Nama:</strong> <span id="confName"></span></p>
+        <p><strong>Email:</strong> <span id="confEmail"></span></p>
+        <p><strong>No. WhatsApp:</strong> <span id="confWa"></span></p>
+        <p><strong>Total Tagihan:</strong> Rp99.000</p>
+      </div>
+
+      <p><strong>Transfer ke:</strong><br>
+         BCA    : 764 2314 699 a.n. Agus Tridoso<br>
+         Mandiri: 126 000 5217186 a.n. Agus Tridoso<br>
+         DANA   : 0819 0596 3754</p>
+
+      <a href="https://wa.me/62881012056464" target="_blank" class="btn whatsapp-btn">
+        <i class="fab fa-whatsapp"></i> Konfirmasi via WhatsApp Admin
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>AKSYSTEM Kursus Digital</p>
+      <p>LKP Terdaftar | Bersertifikat Resmi</p>
+      <p class="npsn">NPSN: K5658689</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Generate Order ID
+    function generateOrderId() {
+      return 'ORD-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000);
+    }
+
+    // Toggle Curriculum
+    function toggleContent(id) {
+      const element = document.getElementById(id);
+      if (element.style.display === 'none' || element.style.display === '') {
+        element.style.display = 'block';
+      } else {
+        element.style.display = 'none';
+      }
+    }
+
+    // Handle Form Submission
+    document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const wa = document.getElementById('wa').value.replace(/\D/g, '');
+      const orderId = generateOrderId();
+
+      const waFormatted = wa.startsWith('0') ? '62' + wa.substring(1) : wa;
+
+      const payload = {
+        order_id: orderId,
+        name: name,
+        email: email,
+        wa: wa,
+        status: 'Belum Bayar',
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbyM9SeQusJBhKAdcKvOlEGmKKqkpeDh1SH726c2UkAvodLWakGgt5DUpZ19ToN2syGO/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (error) {
+        console.log("Data mungkin tetap terkirim meski error karena no-cors");
+      }
+
+      // Tampilkan konfirmasi
+      showConfirmation(orderId, name, email, wa);
+
+      // 🔥 KIRIM TAGIHAN OTOMATIS KE WHATSAPP PEMBELI
+      const message = encodeURIComponent(`
+Halo ${name}! 🎉
+
+Terima kasih sudah mendaftar Kursus Digital Microsoft Office!
+
+📌 *Order ID:* ${orderId}
+💰 *Total Tagihan:* Rp99.000
+💳 *Metode Pembayaran:*
+• BCA    : 764 2314 699 a.n. Agus Tridoso
+• Mandiri: 126 000 5217186 a.n. Agus Tridoso
+• DANA   : 0819 0596 3754
+
+Setelah transfer, konfirmasi ke sini ya. Untuk mengaktifkan akun mu!
+
+Semangat belajar! 💻✨
+      `);
+
+      const userWaUrl = `https://wa.me/${waFormatted}?text=${message}`;
+      window.open(userWaUrl, '_blank');
+    });
+
+    function showConfirmation(orderId, name, email, wa) {
+      document.getElementById('orderId').textContent = orderId;
+      document.getElementById('confName').textContent = name;
+      document.getElementById('confEmail').textContent = email;
+      document.getElementById('confWa').textContent = wa;
+
+      document.getElementById('checkout').style.display = 'none';
+      document.getElementById('confirmation').style.display = 'block';
+      document.getElementById('confirmation').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
