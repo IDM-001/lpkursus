@@ -627,7 +627,20 @@
 
       // 🔥 KIRIM TAGIHAN OTOMATIS KE WHATSAPP PEMBELI
       const formattedHarga = HARGA.toLocaleString('id-ID');
-      const message = encodeURIComponent(`Hai ${name}! 🎉\nTerima kasih sudah mendaftar Kursus Digital Microsoft Office!\n\nSilakan lakukan pembayaran sebesar *Rp${formattedHarga}* ke rekening berikut:\n\nBCA: 7642314699 a.n. Agus Tridoso\nMandiri: 1260005217186 a.n. Agus Tridoso\nDANA: 081905963754\n\n📝 Order ID: ${orderId}\n📧 Email: ${email}\n💰 Total Tagihan: Rp${formattedHarga}\n\nSetelah transfer, kirim bukti transfer ke admin untuk aktivasi. Semangat belajar! 💻✨`);
+      const message = encodeURIComponent(`Hai *${name}!* ✅
+Terima kasih sudah mendaftar *Kursus Digital Microsoft Office*! 🎓
+
+💰 Silakan lakukan pembayaran sebesar *Rp${HARGA.toLocaleString("id-ID")}* ke rekening berikut:
+
+🏦 BCA: 7642314699 a.n. Agus Tridoso
+🏦 Mandiri: 1260005217186 a.n. Agus Tridoso
+📱 DANA: 081905963754
+
+🧾 *Order ID:* ${orderId}
+📧 *Email:* ${email}
+💵 *Total Tagihan:* Rp${HARGA.toLocaleString("id-ID")}
+
+Setelah transfer, kirim bukti ke admin via WA ini agar akunmu segera aktif 🚀`);
 
       const userWaUrl = `https://wa.me/${waFormatted}?text=${message}`;
       window.open(userWaUrl, '_blank');
