@@ -596,7 +596,7 @@
         timestamp: new Date().toISOString()
       };
 
-      try {
+      try { 
         await fetch('https://script.google.com/macros/s/AKfycbyM9SeQusJBhKAdcKvOlEGmKKqkpeDh1SH726c2UkAvodLWakGgt5DUpZ19ToN2syGO/exec', {
           method: 'POST',
           mode: 'no-cors',
@@ -612,16 +612,23 @@
 
       // 🔥 KIRIM TAGIHAN OTOMATIS KE WHATSAPP PEMBELI
       const message = encodeURIComponent(`
-Halo ${name}! 🎉
-
+Hai ${name}! 🎉
 Terima kasih sudah mendaftar Kursus Digital Microsoft Office!
 
-📌 *Order ID:* ${orderId}
-💰 *Total Tagihan:* Rp99.000
-💳 *Metode Pembayaran:*
-• BCA    : 764 2314 699 a.n. Agus Tridoso
-• Mandiri: 126 000 5217186 a.n. Agus Tridoso
-• DANA   : 0819 0596 3754
+Berikut TAGIHAN PESANAN Kursus Digital Microsoft Office!
+${name}, silakan kirim BUKTI TRANSFER.
+💰 TRANSFER PAS Rp99.000 
+
+Ke Rekening Dibawah ini:
+
+💳 BCA    : 764 2314 699 a.n. Agus Tridoso
+💳 Mandiri: 126 000 5217186 a.n. Agus Tridoso
+💳 DANA   : 0819 0596 3754
+
+
+📝 *Order ID:* ${orderId}
+📧 *Email:* ${email}
+💰 Total Tagihan: Rp100.000
 
 Setelah transfer, konfirmasi ke sini ya. Untuk mengaktifkan akun mu!
 
