@@ -1,220 +1,746 @@
-const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1WfO2nUQjS6SembeQuv5eQLTVHtUUFBE5jgfVSmdGbhc/edit?gid=0#gid=0'; // 👈 Ganti dengan URL Sheet kamu
-const SHEET_NAME = 'Data';
-const HARGA_KURSUS = 99000;
-const ADMIN_WA = '62881012056464'; // 👈 Ganti WA Admin
-const WEB_APP_DOMAIN = 'https://idm-001.github.io'; // 👈 Ganti dengan domain website kamu
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kursus Ms Office | Sertifikat Resmi | Cepat & Praktis</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ... (Salin semua CSS dari kode asli ke sini, TIDAK ADA PERUBAHAN) ... */
+    :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --success: #4cc9f0;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --neon: #00ff88;
+      --gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
+    }
 
-//---------------------------------------------------------------
-// 🔹 handleOptions - Menangani pre-flight request untuk CORS
-//---------------------------------------------------------------
-function handleOptions() {
-  return ContentService.createTextOutput('')
-    .withHeaders({
-      'Access-Control-Allow-Origin': WEB_APP_DOMAIN,
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type'
-    });
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-//---------------------------------------------------------------
-// 🔹 doPost - Dipanggil saat form dikirim
-//---------------------------------------------------------------
-function doPost(e) {
-  if (e.postData.type === 'application/x-www-form-urlencoded' && e.parameter.method === 'OPTIONS') {
-    return handleOptions();
-  }
+    body {
+      background-color: #fff;
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero {
+      padding: 100px 0;
+      background: var(--gradient);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: inline-block;
+      background: white;
+      color: var(--primary);
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .btn-submit {
+      background: var(--primary);
+      color: white;
+      width: 100%; /* Agar tombol full-width */
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-submit:disabled {
+        background: #999;
+        cursor: not-allowed;
+    }
+
+    .card-slider {
+      display: flex;
+      gap: 20px;
+      padding: 40px 0;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .card-slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      min-width: 280px;
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid transparent;
+      animation: borderRotate 4s linear infinite;
+    }
+
+    @keyframes borderRotate {
+      0% { border-color: var(--neon); }
+      25% { border-color: #ff00ff; }
+      50% { border-color: #00ffff; }
+      75% { border-color: #ffff00; }
+      100% { border-color: var(--neon); }
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .why-us {
+      padding: 80px 0;
+      background: var(--light);
+    }
+
+    .why-us h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 50px;
+      color: var(--secondary);
+    }
+
+    .cards-grid {
+      display: grid;
+      text-align: justify;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .feature-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .materi {
+      padding: 80px 0;
+      background: white;
+    }
+
+    .materi h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 50px;
+      color: var(--secondary);
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .accordion-item {
+      background: #f8f9ff;
+      border-radius: 16px;
+      padding: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-left: 5px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .accordion-item:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .accordion-item:hover i {
+      color: white;
+    }
+
+    .accordion-item i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .accordion-item h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .accordion-item p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .accordion-content {
+      display: none;
+      margin-top: 15px;
+      padding: 15px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+    }
+
+    .accordion-content.show {
+      display: block;
+      opacity: 1;
+      max-height: 500px;
+    }
+
+    .accordion-content ul {
+      list-style: none;
+    }
+
+    .accordion-content li {
+      padding: 5px 0;
+      border-bottom: 1px dashed #ddd;
+      color: #555;
+    }
+
+    .accordion-content li:last-child {
+      border-bottom: none;
+    }
+
+    .click-label {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.8rem;
+      color: white;
+      font-weight: 600;
+      background: rgba(0,0,0,0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+      z-index: 10;
+    }
+
+    .price-banner {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    .price-banner strong {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    .price-banner del {
+      color: #999;
+      margin: 0 10px;
+    }
+
+    .testimoni {
+      padding: 80px 0;
+      background: var(--light);
+    }
+
+    .testimoni h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 50px;
+      color: var(--secondary);
+    }
+
+    .testimoni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--primary);
+      opacity: 0.2;
+      position: absolute;
+      top: 10px;
+      left: 15px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .user-info img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .user-info h4 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .user-info small {
+      color: #888;
+    }
+
+    .testimonial-card p {
+      color: #555;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    .checkout {
+      padding: 80px 0;
+      background: white;
+      text-align: center;
+    }
+
+    .checkout h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: var(--secondary);
+    }
+
+    .checkout p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #f8f9ff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .confirmation {
+      display: none;
+      margin-top: 30px;
+      padding: 25px;
+      background: #e8f5e8;
+      border-radius: 12px;
+      text-align: left;
+      color: #2e7d32;
+    }
+
+    .confirmation h3 {
+      margin-bottom: 15px;
+      color: #2e7d32;
+    }
+
+    .confirmation p {
+      margin: 8px 0;
+    }
+    
+    #paymentDetails {
+        white-space: pre-wrap; /* Agar format baris baru dari script terbaca */
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-family: monospace;
+        color: var(--dark);
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    footer .badge {
+      background: #2ecc71;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Upgrade Skillmu dengan Kursus Ms Office <br><span style="color:#00ff88">Bersertifikat Resmi</span></h1>
+      <p>Cocok untuk pelajar, mahasiswa, karyawan, atau siapa pun yang ingin meningkatkan produktivitas kerja.</p>
+      <a href="#materi" class="btn">Lihat Materi Kursus →</a>
+    </div>
+  </section>
+
+    <section class="why-us">
+    <div class="container">
+      <h2>Kenapa Harus Ikut Kursus Ini?</h2>
+      <div class="cards-grid">
+        <div class="feature-card">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>Untuk Kalangan</h3>
+          <p>Cocok untuk yang belum bisa sama sekali, atau yang ingin mengupgrade skill.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-certificate"></i>
+          <h3>Bersertifikat Resmi</h3>
+          <p>Sertifikat diakui, bisa ditambahkan ke CV, portofolio, atau syarat lamaran kerja.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-bolt"></i>
+          <h3>Belajar Bisa Dimana Saja</h3>
+          <p>Materi pembelajaran menggunakan video, bisa diakses dari mana saja</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-comments"></i>
+          <h3>Dukungan Konsultasi</h3>
+          <p>Ada grup WhatsApp khusus member. Bisa tanya kapan saja.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-clock"></i>
+          <h3>Akses Selamanya</h3>
+          <p>Akses selamanya selama platform aktif.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-award"></i>
+          <h3>Nilai Bisa Diperbaiki</h3>
+          <p>Ujian bisa diulang sampai 5x. Nilai tertinggi yang diambil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="materi" id="materi">
+    <div class="container">
+      <h2>Materi Lengkap Kursus</h2>
+      <div class="accordion">
+        <div class="accordion-item" onclick="toggleAccordion('word')">
+          <i class="fas fa-file-word"></i>
+          <h3>Microsoft Word</h3>
+          <p>Kuasai pembuatan dokumen, surat, laporan, dan format resmi sesuai standar.</p>
+          <div class="click-label">Klik untuk melihat detail materinya.</div>
+          <div class="accordion-content" id="word">
+            <ul><li>1. Mengenal Office Word</li><li>2. Page Setup</li><li>3. Text</li><li>4. Heading</li><li>5. Daftar Isi</li><li>6. Indent and Ruler</li><li>7. Bullet and Numbering</li><li>8. Spacing</li><li>9. Tabel</li><li>10. Page Number</li><li>11. Header and Footer</li><li>12. WordArt</li><li>13. Picture and Shape</li><li>14. Smart Art and Chart</li><li>15. Equation and Symbol</li><li>16. Arahan Sebelum Tes</li><li>17. Tes Pilihan Ganda MS Word</li></ul>
+          </div>
+        </div>
+        <div class="accordion-item" onclick="toggleAccordion('excel')">
+          <i class="fas fa-file-excel"></i>
+          <h3>Microsoft Excel</h3>
+          <p>Data, rumus, pivot table, grafik, hingga pembuatan laporan data & statistik.</p>
+          <div class="click-label">Klik untuk melihat detail materinya.</div>
+          <div class="accordion-content" id="excel">
+            <ul><li>1. Jenis-jenis Data Pada Excel Part 1</li><li>2. Jenis-jenis Data Pada Excel Part 2</li><li>3. Mengenal Baris dan Kolom Part 1</li><li>4. Mengenal Baris dan Kolom Part 2</li><li>5. Mengenal Baris dan Kolom Part 3</li><li>6. Worksheet</li><li>7. Paste Special Part 1</li><li>8. Paste Special Part 2</li><li>9. Remove Duplicate Part 1</li><li>10. Remove Duplicate Part 2</li><li>11. Common Function: SUM AVERAGE MIN MAX</li><li>12. VLOOKUP dan HLOOKUP</li><li>13. PIVOT TABLE</li><li>14. IF Tunggal dan Bertingkat Part 1</li><li>15. IF Tunggal dan Bertingkat Part 2</li><li>16. Chart</li><li>17. Fungsi SUMIF SUMIFS</li><li>18. Fungsi Pada Teks</li><li>19. COUNT COUNTA COUNTIF COUNTIFS</li><li>20. DATEDIF</li><li>21. Tes Pilihan Ganda MS Excel</li></ul>
+          </div>
+        </div>
+        <div class="accordion-item" onclick="toggleAccordion('powerpoint')">
+          <i class="fas fa-file-powerpoint"></i>
+          <h3>Microsoft PowerPoint</h3>
+          <p>Pelajari cara buat presentasi profesional yang menarik dan efektif untuk kerja atau sekolah.</p>
+          <div class="click-label">Klik untuk melihat detail materinya.</div>
+          <div class="accordion-content" id="powerpoint">
+            <ul><li>1. Pengenalan PowerPoint (Menu dan Toolbar Bag.1)</li><li>2. Pengenalan PowerPoint (Menu dan Toolbar Bag.2)</li><li>3. Penyusunan Slide</li><li>4. Menambahkan Teks</li><li>5. Menambahkan Gambar</li><li>6. Penggunaan Shape dan SmartArt</li><li>7. Menambahkan Video dan Audio</li><li>8. Animasi Dasar</li><li>9. Transisi Slide</li><li>10. Animasi Lanjutan</li><li>11. Transisi Canggih</li><li>12. Grafik dan Analisis Data</li><li>13. Mengintegrasikan dengan Excel</li><li>14. Menggunakan template Desain dan Layout</li><li>15. Desain Slide Kreatif</li><li>16. Mastering Slide Master</li><li>17. Animasi dan Transisi Ekspert</li><li>18. Data Visualisasi Lanjutan</li><li>19. Powerpoint proposal bisnis</li><li>20. Presentasi proposal kreatif</li><li>21. Tes Pilihan Ganda MS Power Point</li></ul>
+          </div>
+        </div>
+      </div>
+      <div class="price-banner">
+        <p>Siap tingkatkan skill MS Office kamu dan dapatkan sertifikat resmi?</p>
+        <p>Dengan Harga Promo <strong>Rp99.000</strong></p>
+        <br>
+        <a href="#checkout" class="btn btn-submit">Lanjutkan ke Pembayaran →</a>
+      </div>
+    </div>
+  </section>
   
-  try {
-    const data = JSON.parse(e.postData.contents);
+   <section class="testimoni">
+    <div class="container">
+      <h2>Apa Kata Alumni?</h2>
+      <div class="testimoni-grid">
+        <div class="testimonial-card">
+          <div class="user-info">
+            <img src="https://i.pravatar.cc/150?img=1" alt="User">
+            <div>
+              <h4>Dewi Sartika</h4>
+            	<small>Mahasiswa, Jakarta</small>
+            </div>
+          </div>
+          <p>"Baru pertama kali belajar Excel, ternyata mudah banget! Sekarang saya bisa buat laporan skripsi sendiri. Sertifikatnya juga langsung saya masukin ke CV."</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="user-info">
+            <img src="https://i.pravatar.cc/150?img=2" alt="User">
+          	<div>
+              <h4>Budi Santoso</h4>
+            	<small>Staff Admin, Surabaya</small>
+          	</div>
+          </div>
+          <p>"Dulu takut sama rumus Excel, sekarang malah jadi andalan kantor. Bos senang, gaji naik. Worth it banget!"</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="user-info">
+            <img src="https://i.pravatar.cc/150?img=3" alt="User">
+          	<div>
+              <h4>Lina Marlina</h4>
+            	<small>Guru, Bandung</small>
+          	</div>
+          </div>
+          <p>"Presentasi saya sekarang lebih menarik. Anak-anak jadi lebih semangat belajar. Terima kasih atas kursus yang sangat praktis dan langsung bisa dipakai."</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    const nama = (data.nama || '').trim();
-    const email = (data.email || '').trim().toLowerCase();
-    // Perbaikan: Ganti 0 di depan dengan 62, jika tidak ada 62, tambahkan 62.
-    let wa = (data.wa || '').replace(/\D/g, '');
-    if (wa.startsWith('0')) {
-      wa = '62' + wa.substring(1);
-    } else if (!wa.startsWith('62')) {
-      wa = '62' + wa;
+
+  <section class="checkout" id="checkout">
+    <div class="container">
+      <h2>Ayo Mulai Perjalanan Belajarmu Hari Ini!</h2>
+      <p>Dengan hanya <strong>Rp99.000</strong>, kamu sudah bisa menguasai Ms Office, dapat sertifikat resmi, dan siap bersaing di dunia kerja.</p>
+
+      <div class="form-container">
+        <form id="checkoutForm">
+          <div class="form-group">
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" required placeholder="Contoh: Budi Sanjaya">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required placeholder="contoh@gmail.com">
+          </div>
+          <div class="form-group">
+            <label for="wa">No WhatsApp (Aktif)</label>
+            <input type="tel" id="wa" required placeholder="Contoh: 081234567890">
+          </div>
+          <button type="submit" id="submitBtn" class="btn btn-submit">
+            <span class="btn-text">Lanjut ke Pembayaran</span>
+            <span class="btn-loading-spinner" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i> Memproses...
+            </span>
+          </button>
+        </form>
+
+        <div class="confirmation" id="confirmation">
+          <h3>✅ Pendaftaran Berhasil!</h3>
+          <p>Data kamu sudah kami terima. Silakan selesaikan pembayaran.</p>
+          <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+          <p><strong>Nama:</strong> <span id="confName"></span></p>
+          <p><strong>Total Tagihan:</strong> <span id="confHarga"></span></p>
+          <p><strong>Silakan transfer ke:</strong></p>
+          <div id="paymentDetails"></div>
+          <p>Kami telah mengirimkan rincian ini ke WhatsApp Admin. Klik tombol di bawah untuk konfirmasi.</p>
+          <a href="#" id="whatsappBtn" class="btn" target="_blank">Konfirmasi via WhatsApp Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><strong>AKSYSTEM Kursus Digital</strong></p>
+      <p class="badge">LKP Terdaftar | Bersertifikat Resmi</p>
+      <p>NPSN: K5658689</p>
+    </div>
+  </footer>
+
+
+  <script>
+    // URL Web App, cukup ganti di sini jika perlu
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyATFTaANnUH3ENeCSHm2IQ6irVwXSdY7fdTih-mmP1bjuwrclVJT_MSOVqbMsHaHOufw/exec';
+
+    // Accordion Logic (tetap sama)
+    function toggleAccordion(id) {
+        const target = document.getElementById(id);
+        const allContents = document.querySelectorAll('.accordion-content');
+        
+        if (target.classList.contains('show')) {
+            target.classList.remove('show');
+        } else {
+            allContents.forEach(content => {
+                content.classList.remove('show');
+            });
+            target.classList.add('show');
+        }
     }
 
-    if (!nama || !email || !wa) {
-      return createJsonResponse({ result: 'error', message: 'Semua field wajib diisi.' });
-    }
+    // Form Checkout Logic (PERBAIKAN DI SINI)
+    const checkoutForm = document.getElementById('checkoutForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnSpinner = submitBtn.querySelector('.btn-loading-spinner');
+    const confirmationDiv = document.getElementById('confirmation');
 
-    const ss = SpreadsheetApp.openByUrl(SHEET_URL);
-    const sheet = ss.getSheetByName(SHEET_NAME);
-    const rows = sheet.getDataRange().getValues();
-    const headers = rows[0];
+    checkoutForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
 
-    // Menggunakan Map untuk efisiensi
-    const headerMap = new Map(headers.map((h, i) => [h, i]));
-    const requiredHeaders = ['Order ID', 'Nama', 'Email', 'WhatsApp', 'Status', 'Harga', 'Timestamp'];
-    
-    // Validasi semua header yang dibutuhkan ada
-    for (const header of requiredHeaders) {
-      if (!headerMap.has(header)) {
-        console.error('Kolom tidak ditemukan:', header);
-        return createJsonResponse({ result: 'error', message: `Struktur sheet tidak valid, kolom "${header}" tidak ditemukan.` });
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const wa = document.getElementById('wa').value.trim();
+
+      if (!name || !email || !wa) {
+        alert('Semua field wajib diisi!');
+        return;
       }
-    }
 
-    const idxEmail = headerMap.get('Email');
-    const idxWa = headerMap.get('WhatsApp');
+      // Tampilkan loading state
+      btnText.style.display = 'none';
+      btnSpinner.style.display = 'inline-block';
+      submitBtn.disabled = true;
 
-    const orderId = generateOrderId();
-    let foundRowIndex = -1;
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'cors', // Penting untuk cross-origin request
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nama: name, email: email, wa: wa }),
+          redirect: 'follow'
+        });
 
-    // Cari data yang sudah ada
-    for (let i = 1; i < rows.length; i++) {
-      const rowEmail = (rows[i][idxEmail] || '').toString().trim().toLowerCase();
-      const rowWa = (rows[i][idxWa] || '').toString().replace(/\D/g, '');
-      if (rowEmail === email || rowWa === wa) {
-        foundRowIndex = i;
-        break;
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        if (data.result === 'success') {
+          // Isi data konfirmasi dari response script
+          document.getElementById('confName').textContent = data.name;
+          document.getElementById('orderId').textContent = data.orderId;
+          document.getElementById('confHarga').textContent = data.harga;
+          document.getElementById('paymentDetails').textContent = data.tagihan;
+          document.getElementById('whatsappBtn').href = data.buyerWaLink;
+
+          // Tampilkan blok konfirmasi dan sembunyikan form
+          checkoutForm.style.display = 'none';
+          confirmationDiv.style.display = 'block';
+
+          // Otomatis arahkan ke WhatsApp setelah beberapa detik
+          setTimeout(() => {
+              window.open(data.buyerWaLink, '_blank');
+          }, 1500);
+
+        } else {
+          throw new Error(data.message || 'Terjadi kesalahan yang tidak diketahui.');
+        }
+
+      } catch (err) {
+        console.error('Fetch Error:', err);
+        alert('Gagal mendaftar: ' + err.message);
+      } finally {
+        // Kembalikan tombol ke state normal
+        btnText.style.display = 'inline-block';
+        btnSpinner.style.display = 'none';
+        submitBtn.disabled = false;
       }
-    }
-
-    let resultMessage = '';
-
-    if (foundRowIndex > 0) {
-      const rowNumber = foundRowIndex + 1;
-      const range = sheet.getRange(rowNumber, 1, 1, headers.length);
-      const rowData = range.getValues()[0];
-      rowData[headerMap.get('Order ID')] = orderId;
-      rowData[headerMap.get('Status')] = 'Belum Bayar';
-      rowData[headerMap.get('Timestamp')] = new Date();
-      range.setValues([rowData]);
-      resultMessage = `Data ditemukan, diperbarui dengan Order ID baru: ${orderId}`;
-    } else {
-      const newRow = new Array(headers.length).fill('');
-      newRow[headerMap.get('Order ID')] = orderId;
-      newRow[headerMap.get('Nama')] = nama;
-      newRow[headerMap.get('Email')] = email;
-      newRow[headerMap.get('WhatsApp')] = wa;
-      newRow[headerMap.get('Status')] = 'Belum Bayar';
-      newRow[headerMap.get('Harga')] = HARGA_KURSUS;
-      newRow[headerMap.get('Timestamp')] = new Date();
-      sheet.appendRow(newRow);
-      resultMessage = `Data baru berhasil ditambahkan dengan Order ID: ${orderId}`;
-    }
-
-    const tagihanInfo = generateTagihanInfo();
-    
-    const tagihanMsg = encodeURIComponent(
-      `Halo ${nama}, terima kasih telah mendaftar! 🎉\n\n` +
-      `📝 *Order ID: ${orderId}*\n` +
-      `📧 Email: ${email}\n` +
-      `📱 WhatsApp: ${wa}\n` +
-      `💰 *Tagihan: Rp${HARGA_KURSUS.toLocaleString('id-ID')}*\n\n` +
-      `Silakan transfer ke salah satu rekening berikut:\n` +
-      `${tagihanInfo}\n\n` +
-      `Setelah transfer, konfirmasi ke admin via WhatsApp ini dengan mengirim bukti transfer.\n\n` +
-      `Harap sabar, akan dikonfirmasi secepatnya. Terima kasih!`
-    );
-
-    const adminMsg = encodeURIComponent(
-      `🔔 *NOTIFIKASI PENDAFTARAN BARU*\n\n` +
-      `Nama: ${nama}\n` +
-      `Email: ${email}\n` +
-      `WA: ${wa}\n` +
-      `Order ID: ${orderId}\n` +
-      `Status: Belum Bayar\n` +
-      `Waktu: ${new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' })}\n\n`+
-      `Hubungi pendaftar: https://wa.me/${wa}` // Link langsung ke pendaftar
-    );
-
-    const buyerWaLink = `https://wa.me/${ADMIN_WA}?text=${tagihanMsg}`;
-    const adminWaLink = `https://wa.me/${ADMIN_WA}?text=${adminMsg}`; // Notif ke admin
-
-    return createJsonResponse({
-      result: 'success',
-      orderId: orderId,
-      name: nama,
-      email: email,
-      wa: wa,
-      message: resultMessage,
-      buyerWaLink: buyerWaLink,
-      adminWaLink: adminWaLink, // Kirim link notif admin juga (opsional, untuk debug)
-      tagihan: tagihanInfo,
-      harga: `Rp${HARGA_KURSUS.toLocaleString('id-ID')}`
     });
-
-  } catch (error) {
-    console.error('Error di doPost:', error.toString(), error.stack);
-    return createJsonResponse({ result: 'error', message: 'Terjadi kesalahan sistem. Coba lagi nanti.' });
-  }
-}
-
-//---------------------------------------------------------------
-// 🔹 Fungsi Pembantu
-//---------------------------------------------------------------
-function createJsonResponse(data) {
-  const response = ContentService.createTextOutput(JSON.stringify(data))
-    .setMimeType(ContentService.MimeType.JSON);
-  response.setHeaders({
-    'Access-Control-Allow-Origin': WEB_APP_DOMAIN,
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type'
-  });
-  return response;
-}
-
-function generateTagihanInfo() {
-  return `💳 *GOPAY/DANA/SHOPEEPAY/OVO:*\n   081322273798\n` +
-         `💳 *BRI:*\n   328901030233537\n` +
-         `💳 *BCA:*\n   8105790712\n` +
-         `💳 *BSI:*\n   7153465147\n` +
-         `💳 *MANDIRI:*\n   1300020963156`;
-}
-
-function generateOrderId() {
-  const date = new Date();
-  const dateStr = Utilities.formatDate(date, 'Asia/Jakarta', 'yyyyMMdd');
-  const random = Math.floor(100 + Math.random() * 900); // 3 digit angka random
-  return `ORD-${dateStr}-${random}`;
-}
-
-// Sisa fungsi (doGet, onOpen, setStatusToPaid, testGenerateOrderId) tetap sama
-
-// ... (Salin sisa fungsi dari kode asli ke sini)
-
-function doGet(e) {
-  return HtmlService.createHtmlOutput(`
-    <p>Halo! Ini adalah endpoint untuk proses checkout kursus.</p>
-    <p>Silakan gunakan form di website untuk mendaftar.</p>
-    <p><small>Error "Fungsi skrip tidak ditemukan" muncul karena Anda mengakses langsung URL Web App.</small></p>
-  `);
-}
-
-function onOpen() {
-  const ui = SpreadsheetApp.getUi();
-  ui.createMenu('🔧 Kursus Tools')
-    .addItem('Set Status: Sudah Bayar', 'setStatusToPaid')
-    .addToUi();
-}
-
-function setStatusToPaid() {
-  const sheet = SpreadsheetApp.getActiveSheet();
-  const selection = sheet.getActiveRange();
-  const row = selection.getRow();
-
-  if (row === 1) {
-    SpreadsheetApp.getUi().alert('⚠️ Tidak bisa mengubah header!');
-    return;
-  }
-
-  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-  const statusCol = headers.indexOf('Status') + 1;
-
-  if (statusCol === 0) {
-    SpreadsheetApp.getUi().alert('Kolom "Status" tidak ditemukan!');
-    return;
-  }
-
-  sheet.getRange(row, statusCol).setValue('Sudah Bayar');
-  SpreadsheetApp.getUi().alert(`✅ Status baris ${row} diubah menjadi "Sudah Bayar"`);
-}
-
-function testGenerateOrderId() {
-  console.log(generateOrderId());
-}
+  </script>
+</body>
+</html>
