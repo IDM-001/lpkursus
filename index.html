@@ -341,18 +341,19 @@
             });
         });
 
-        // --- UPDATED FORM SUBMISSION LOGIC ---
+        // --- FORM SUBMISSION LOGIC ---
         const form = document.getElementById('checkout-form');
         const submitButton = document.getElementById('submit-button');
         const formMessage = document.getElementById('form-message');
         
-        // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+        // URL INI TELAH DIPERBARUI SESUAI PERMINTAAN ANDA
         const webAppUrl = 'https://script.google.com/macros/s/AKfycbxl5T0WdC1rETO2824ybDyEHT3HquFz1vJyfPHmHfySviVr21vEC5VErhoJkYBsDtGB/exec'; 
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Tampilkan status loading
+            console.log("Form submitted. Sending data to:", webAppUrl);
+            
             const originalButtonText = submitButton.innerHTML;
             submitButton.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim...`;
             submitButton.disabled = true;
@@ -367,30 +368,30 @@
             fetch(webAppUrl, {
                 method: 'POST',
                 body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'text/plain;charset=utf-8', // Use text/plain for this workaround
-                },
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                return response.json();
+            })
             .then(result => {
+                console.log("Response from server:", result);
                 if (result.status === "success") {
-                    // Jika sukses
                     formMessage.textContent = 'Terima kasih! Silakan periksa WhatsApp Anda dalam 1-2 menit untuk detail pembayaran.';
                     formMessage.className = 'p-4 mb-4 rounded-md bg-green-100 text-green-800';
                     form.reset();
                 } else {
-                    // Jika ada error dari Apps Script
                     throw new Error(result.message || 'Terjadi kesalahan di server.');
                 }
             })
             .catch(error => {
-                // Jika fetch gagal (misal, network error atau URL salah)
                 console.error('Error submitting form:', error);
-                formMessage.textContent = 'Gagal mengirim data. Periksa koneksi Anda atau hubungi admin.';
+                formMessage.textContent = 'Gagal mengirim data. Pastikan URL Web App benar dan sudah di-deploy ulang. Cek juga log eksekusi di Apps Script.';
                 formMessage.className = 'p-4 mb-4 rounded-md bg-red-100 text-red-800';
             })
             .finally(() => {
-                // Selalu kembalikan tombol ke keadaan semula
                 formMessage.classList.remove('hidden');
                 submitButton.innerHTML = originalButtonText;
                 submitButton.disabled = false;
@@ -399,4 +400,3 @@
     </script>
 </body>
 </html>
-
