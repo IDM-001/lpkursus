@@ -1,160 +1,442 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kursus Ms Office | Sertifikat Resmi | Cepat & Praktis</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --primary: #4361ee; --secondary: #3a0ca3; --success: #4cc9f0; --light: #f8f9fa; --dark: #212529; --neon: #00ff88; --gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { background-color: #fff; color: var(--dark); overflow-x: hidden; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    .hero { padding: 100px 0; background: var(--gradient); color: white; text-align: center; position: relative; overflow: hidden; }
-    .hero h1 { font-size: 2.8rem; margin-bottom: 20px; line-height: 1.3; }
-    .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; opacity: 0.9; }
-    .btn { display: inline-block; background: white; color: var(--primary); padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; cursor: pointer; }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-    .why-us { padding: 80px 0; background: var(--light); }
-    .why-us h2 { text-align: center; font-size: 2.2rem; margin-bottom: 50px; color: var(--secondary); }
-    .cards-grid { display: grid; text-align: justify; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .feature-card { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .feature-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-    .feature-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
-    .feature-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--dark); }
-    .feature-card p { color: #666; line-height: 1.6; }
-    .materi { padding: 80px 0; background: white; }
-    .materi h2 { text-align: center; font-size: 2.2rem; margin-bottom: 50px; color: var(--secondary); }
-    .accordion { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto; }
-    .accordion-item { background: #f8f9ff; border-radius: 16px; padding: 25px; cursor: pointer; transition: all 0.3s ease; border-left: 5px solid var(--primary); position: relative; overflow: hidden; }
-    .accordion-item:hover { background: var(--primary); color: white; }
-    .accordion-item:hover i { color: white; }
-    .accordion-item i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
-    .accordion-item h3 { font-size: 1.4rem; margin-bottom: 10px; }
-    .accordion-item p { font-size: 0.95rem; line-height: 1.6; }
-    .accordion-content { display: none; margin-top: 15px; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); opacity: 0; max-height: 0; overflow: hidden; transition: opacity 0.3s ease, max-height 0.3s ease; }
-    .accordion-content.show { display: block; opacity: 1; max-height: 500px; }
-    .accordion-content ul { list-style: none; padding-left: 10px;}
-    .accordion-content li { padding: 5px 0; border-bottom: 1px dashed #ddd; color: #555; }
-    .accordion-content li:last-child { border-bottom: none; }
-    .price-banner { text-align: center; margin: 40px 0; font-size: 1.2rem; color: #555; }
-    .price-banner strong { font-size: 1.8rem; color: var(--primary); }
-    .testimoni { padding: 80px 0; background: var(--light); }
-    .testimoni h2 { text-align: center; font-size: 2.2rem; margin-bottom: 50px; color: var(--secondary); }
-    .testimoni-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-    .testimonial-card { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
-    .testimonial-card::before { content: '"'; font-size: 4rem; color: var(--primary); opacity: 0.2; position: absolute; top: 10px; left: 15px; }
-    .user-info { display: flex; align-items: center; margin-bottom: 15px; }
-    .user-info img { width: 50px; height: 50px; border-radius: 50%; margin-right: 15px; }
-    .user-info h4 { font-size: 1.1rem; margin: 0; }
-    .user-info small { color: #888; }
-    .testimonial-card p { color: #555; line-height: 1.6; margin-top: 10px; }
-    .checkout { padding: 80px 0; background: white; text-align: center; }
-    .checkout h2 { font-size: 2.2rem; margin-bottom: 20px; color: var(--secondary); }
-    .checkout p { max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; color: #555; }
-    .form-container { max-width: 500px; margin: 0 auto; background: #f8f9ff; padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-    .form-group { margin-bottom: 20px; text-align: left; }
-    .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--dark); }
-    .form-group input { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
-    .form-group input:focus { outline: none; border-color: var(--primary); }
-    .btn-submit { background: var(--primary); color: white; width: 100%; border: none; }
-    .btn-submit:disabled { background: #999; cursor: not-allowed; }
-    .confirmation { display: none; margin-top: 30px; padding: 25px; background: #e8f5e8; border-radius: 12px; text-align: left; color: #2e7d32; }
-    .confirmation h3 { margin-bottom: 15px; color: #2e7d32; }
-    .confirmation p { margin: 8px 0; }
-    #paymentDetails { white-space: pre-wrap; background: #fff; padding: 15px; border-radius: 8px; margin-top: 10px; font-family: monospace; color: var(--dark); }
-    footer { background: var(--dark); color: white; text-align: center; padding: 30px 0; }
-    footer p { margin: 5px 0; }
-    footer .badge { background: #2ecc71; padding: 5px 10px; border-radius: 6px; font-size: 0.9rem; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kursus Online Microsoft Office Bersertifikat Resmi</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Menggunakan font Cairo untuk seluruh halaman */
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* Definisi variabel warna untuk konsistensi */
+        :root {
+            --green-primary: #2D572C;
+            --gold-accent: #F0A500;
+            --background-light: #F9F9F9;
+            --text-dark: #333333;
+        }
+
+        /* Styling untuk elemen kustom */
+        .gradient-gold {
+            background-image: linear-gradient(to right, #eab308, #F0A500);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .accordion-button.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-background-light text-text-dark">
 
-  <section class="hero"> <div class="container"> <h1>Upgrade Skillmu dengan Kursus Ms Office <br><span style="color:#00ff88">Bersertifikat Resmi</span></h1> <p>Cocok untuk pelajar, mahasiswa, karyawan, atau siapa pun yang ingin meningkatkan produktivitas kerja.</p> <a href="#checkout" class="btn">Daftar Sekarang →</a> </div> </section>
-  <section class="why-us"> <div class="container"> <h2>Kenapa Harus Ikut Kursus Ini?</h2> <div class="cards-grid"> <div class="feature-card"> <i class="fas fa-graduation-cap"></i> <h3>Untuk Semua Kalangan</h3> <p>Cocok untuk yang belum bisa sama sekali, atau yang ingin mengupgrade skill.</p> </div> <div class="feature-card"> <i class="fas fa-certificate"></i> <h3>Bersertifikat Resmi</h3> <p>Sertifikat diakui, bisa ditambahkan ke CV, portofolio, atau syarat lamaran kerja.</p> </div> <div class="feature-card"> <i class="fas fa-bolt"></i> <h3>Belajar Fleksibel</h3> <p>Materi pembelajaran menggunakan video, bisa diakses dari mana saja dan kapan saja.</p> </div> <div class="feature-card"> <i class="fas fa-comments"></i> <h3>Dukungan Konsultasi</h3> <p>Ada grup WhatsApp khusus member. Bisa tanya kapan saja jika ada kesulitan.</p> </div> <div class="feature-card"> <i class="fas fa-clock"></i> <h3>Akses Selamanya</h3> <p>Cukup bayar sekali untuk akses materi dan semua pembaruan selamanya.</p> </div> <div class="feature-card"> <i class="fas fa-award"></i> <h3>Nilai Bisa Diperbaiki</h3> <p>Ujian bisa diulang sampai 5x. Nilai tertinggi yang akan diambil untuk sertifikat.</p> </div> </div> </div> </section>
-  <section class="materi" id="materi"> <div class="container"> <h2>Materi Lengkap Kursus</h2> <div class="accordion"> <div class="accordion-item" onclick="toggleAccordion('word')"> <i class="fas fa-file-word"></i> <h3>Microsoft Word</h3> <p>Kuasai pembuatan dokumen, surat, laporan, dan format resmi sesuai standar.</p> <div class="accordion-content" id="word"> <ul><li>1. Mengenal Office Word</li><li>2. Page Setup</li><li>3. Text</li><li>4. Heading</li><li>5. Daftar Isi</li><li>6. Indent and Ruler</li><li>7. Bullet and Numbering</li><li>8. Spacing</li><li>9. Tabel</li><li>10. Page Number</li><li>11. Header and Footer</li><li>12. WordArt</li><li>13. Picture and Shape</li><li>14. Smart Art and Chart</li><li>15. Equation and Symbol</li><li>16. Arahan Sebelum Tes</li><li>17. Tes Pilihan Ganda MS Word</li></ul> </div> </div> <div class="accordion-item" onclick="toggleAccordion('excel')"> <i class="fas fa-file-excel"></i> <h3>Microsoft Excel</h3> <p>Ahli dalam mengolah data, rumus, pivot table, grafik, hingga laporan statistik.</p> <div class="accordion-content" id="excel"> <ul><li>1. Jenis-jenis Data Pada Excel Part 1</li><li>2. Jenis-jenis Data Pada Excel Part 2</li><li>3. Mengenal Baris dan Kolom Part 1</li><li>4. Mengenal Baris dan Kolom Part 2</li><li>5. Mengenal Baris dan Kolom Part 3</li><li>6. Worksheet</li><li>7. Paste Special Part 1</li><li>8. Paste Special Part 2</li><li>9. Remove Duplicate Part 1</li><li>10. Remove Duplicate Part 2</li><li>11. Common Function: SUM AVERAGE MIN MAX</li><li>12. VLOOKUP dan HLOOKUP</li><li>13. PIVOT TABLE</li><li>14. IF Tunggal dan Bertingkat Part 1</li><li>15. IF Tunggal dan Bertingkat Part 2</li><li>16. Chart</li><li>17. Fungsi SUMIF SUMIFS</li><li>18. Fungsi Pada Teks</li><li>19. COUNT COUNTA COUNTIF COUNTIFS</li><li>20. DATEDIF</li><li>21. Tes Pilihan Ganda MS Excel</li></ul> </div> </div> <div class="accordion-item" onclick="toggleAccordion('powerpoint')"> <i class="fas fa-file-powerpoint"></i> <h3>Microsoft PowerPoint</h3> <p>Buat presentasi profesional yang menarik dan efektif untuk kerja atau sekolah.</p> <div class="accordion-content" id="powerpoint"> <ul><li>1. Pengenalan PowerPoint (Menu dan Toolbar Bag.1)</li><li>2. Pengenalan PowerPoint (Menu dan Toolbar Bag.2)</li><li>3. Penyusunan Slide</li><li>4. Menambahkan Teks</li><li>5. Menambahkan Gambar</li><li>6. Penggunaan Shape dan SmartArt</li><li>7. Menambahkan Video dan Audio</li><li>8. Animasi Dasar</li><li>9. Transisi Slide</li><li>10. Animasi Lanjutan</li><li>11. Transisi Canggih</li><li>12. Grafik dan Analisis Data</li><li>13. Mengintegrasikan dengan Excel</li><li>14. Menggunakan template Desain dan Layout</li><li>15. Desain Slide Kreatif</li><li>16. Mastering Slide Master</li><li>17. Animasi dan Transisi Ekspert</li><li>18. Data Visualisasi Lanjutan</li><li>19. Powerpoint proposal bisnis</li><li>20. Presentasi proposal kreatif</li><li>21. Tes Pilihan Ganda MS Power Point</li></ul> </div> </div> </div> <div class="price-banner"> <p>Siap tingkatkan skill MS Office kamu dan dapatkan sertifikat resmi?</p> <p>Dengan Harga Promo <strong>Rp99.000</strong></p> <br> <a href="#checkout" class="btn btn-submit">Lanjutkan ke Pembayaran →</a> </div> </div> </section>
-  <section class="testimoni"> <div class="container"> <h2>Apa Kata Alumni?</h2> <div class="testimoni-grid"> <div class="testimonial-card"> <div class="user-info"> <img src="https://i.pravatar.cc/150?img=1" alt="User"> <div> <h4>Dewi Sartika</h4> <small>Mahasiswa, Jakarta</small> </div> </div> <p>"Baru pertama kali belajar Excel, ternyata mudah banget! Sekarang saya bisa buat laporan skripsi sendiri. Sertifikatnya juga langsung saya masukin ke CV."</p> </div> <div class="testimonial-card"> <div class="user-info"> <img src="https://i.pravatar.cc/150?img=2" alt="User"> <div> <h4>Budi Santoso</h4> <small>Staff Admin, Surabaya</small> </div> </div> <p>"Dulu takut sama rumus Excel, sekarang malah jadi andalan kantor. Bos senang, gaji naik. Worth it banget!"</p> </div> <div class="testimonial-card"> <div class="user-info"> <img src="https://i.pravatar.cc/150?img=3" alt="User"> <div> <h4>Lina Marlina</h4> <small>Guru, Bandung</small> </div> </div> <p>"Presentasi saya sekarang lebih menarik. Anak-anak jadi lebih semangat belajar. Terima kasih atas kursus yang sangat praktis dan langsung bisa dipakai."</p> </div> </div> </div> </section>
-  <section class="checkout" id="checkout"> <div class="container"> <h2>Ayo Mulai Perjalanan Belajarmu Hari Ini!</h2> <p>Dengan hanya <strong>Rp99.000</strong>, kamu sudah bisa menguasai Ms Office, dapat sertifikat resmi, dan siap bersaing di dunia kerja.</p> <div class="form-container"> <form id="checkoutForm"> <div class="form-group"> <label for="name">Nama Lengkap</label> <input type="text" id="name" required placeholder="Contoh: Budi Sanjaya"> </div> <div class="form-group"> <label for="email">Email</label> <input type="email" id="email" required placeholder="contoh@gmail.com"> </div> <div class="form-group"> <label for="wa">No WhatsApp (Aktif)</label> <input type="tel" id="wa" required placeholder="Contoh: 081234567890"> </div> <button type="submit" id="submitBtn" class="btn btn-submit"> <span class="btn-text">Lanjut ke Pembayaran</span> <span class="btn-loading-spinner" style="display: none;"> <i class="fas fa-spinner fa-spin"></i> Memproses... </span> </button> </form> <div class="confirmation" id="confirmation"> <h3>✅ Pendaftaran Berhasil!</h3> <p>Data kamu sudah kami terima. Silakan selesaikan pembayaran.</p> <p><strong>Order ID:</strong> <span id="orderId"></span></p> <p><strong>Nama:</strong> <span id="confName"></span></p> <p><strong>Total Tagihan:</strong> <span id="confHarga"></span></p> <p><strong>Silakan transfer ke:</strong></p> <div id="paymentDetails"></div> <p>Kami telah mengirimkan rincian ini ke WhatsApp Anda. Klik tombol di bawah untuk konfirmasi pembayaran ke Admin.</p> <a href="#" id="whatsappBtn" class="btn" target="_blank">Konfirmasi via WhatsApp Sekarang</a> </div> </div> </div> </section>
-  <footer> <div class="container"> <p><strong>AKSYSTEM Kursus Digital</strong></p> <p class="badge">LKP Terdaftar | Bersertifikat Resmi</p> <p>NPSN: K5658689</p> </div> </footer>
+    <!-- Header / Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-[var(--green-primary)]">EduOffice</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#benefits" class="hover:text-[var(--gold-accent)] transition duration-300">Benefit</a>
+                <a href="#curriculum" class="hover:text-[var(--gold-accent)] transition duration-300">Materi</a>
+                <a href="#testimonials" class="hover:text-[var(--gold-accent)] transition duration-300">Testimoni</a>
+                <a href="#about" class="hover:text-[var(--gold-accent)] transition duration-300">Tentang Kami</a>
+            </div>
+            <a href="#cta" class="hidden md:block bg-[var(--gold-accent)] text-white font-bold py-2 px-6 rounded-lg hover:opacity-90 transition duration-300">
+                Daftar Sekarang
+            </a>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i class="fas fa-bars text-2xl text-[var(--green-primary)]"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2">
+            <a href="#benefits" class="block text-center py-2 px-4 text-sm hover:bg-gray-100">Benefit</a>
+            <a href="#curriculum" class="block text-center py-2 px-4 text-sm hover:bg-gray-100">Materi</a>
+            <a href="#testimonials" class="block text-center py-2 px-4 text-sm hover:bg-gray-100">Testimoni</a>
+            <a href="#about" class="block text-center py-2 px-4 text-sm hover:bg-gray-100">Tentang Kami</a>
+            <a href="#cta" class="block text-center py-3 px-4 text-sm bg-[var(--gold-accent)] text-white font-bold">Daftar Sekarang</a>
+        </div>
+    </header>
 
-<script>
-  // ❗ PENTING: GANTI URL DI BAWAH INI dengan URL Web App Anda
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwaZKr85NmtEWU_IU_ZpPB9J0eyzU9H3u6sKkD6P8xgkOErHIq_23l9dE6igk0pJk6BuA/exec';
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="hero" class="relative text-white min-h-[80vh] flex items-center">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Suasana belajar kursus online yang nyaman">
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl font-black leading-tight mb-4">
+                    Kuasai Microsoft Office, Dapatkan Sertifikasi Resmi, Tingkatkan Karir Anda.
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
+                    Kursus online terlengkap dari dasar hingga mahir. Belajar fleksibel, materi praktis, dan dapatkan sertifikat yang diakui industri untuk membuka pintu kesuksesan.
+                </p>
+                <a href="#curriculum" class="bg-[var(--gold-accent)] text-white font-bold py-4 px-10 rounded-lg text-lg hover:opacity-90 transition duration-300 transform hover:scale-105">
+                    Lihat Materi Kursus
+                </a>
+                <p class="mt-4 text-sm">✨ Diskon 50% untuk 100 pendaftar pertama!</p>
+            </div>
+        </section>
 
-  // Accordion Logic
-  function toggleAccordion(id) {
-      const target = document.getElementById(id);
-      const allContents = document.querySelectorAll('.accordion-content');
-      const currentlyShown = target.classList.contains('show');
-      allContents.forEach(content => {
-          content.classList.remove('show');
-      });
-      if (!currentlyShown) {
-          target.classList.add('show');
-      }
-  }
+        <!-- 2. Benefits Section -->
+        <section id="benefits" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--green-primary)]">Investasi Terbaik untuk Masa Depan Profesional Anda</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-12">Fokus pada hasil, bukan hanya fitur. Inilah yang akan Anda dapatkan.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Benefit Card 1 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <i class="fas fa-certificate text-4xl text-[var(--gold-accent)] mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Sertifikasi Resmi</h3>
+                        <p class="text-gray-600">Tingkatkan nilai CV Anda dengan sertifikat resmi yang diakui secara global. Buktikan keahlian Anda!</p>
+                    </div>
+                    <!-- Benefit Card 2 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <i class="fas fa-clock text-4xl text-[var(--gold-accent)] mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Pembelajaran Fleksibel</h3>
+                        <p class="text-gray-600">Akses materi selamanya, 24/7. Belajar sesuai ritme Anda, cocok untuk karyawan atau mahasiswa.</p>
+                    </div>
+                    <!-- Benefit Card 3 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <i class="fas fa-rocket text-4xl text-[var(--gold-accent)] mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Materi Praktis & Relevan</h3>
+                        <p class="text-gray-600">Bukan hanya teori. Anda akan belajar mengerjakan studi kasus nyata yang relevan dengan dunia kerja.</p>
+                    </div>
+                    <!-- Benefit Card 4 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <i class="fas fa-users text-4xl text-[var(--gold-accent)] mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Komunitas & Dukungan</h3>
+                        <p class="text-gray-600">Bergabunglah dengan grup eksklusif untuk bertanya langsung kepada mentor dan sesama peserta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  const checkoutForm = document.getElementById('checkoutForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const btnText = submitBtn.querySelector('.btn-text');
-  const btnSpinner = submitBtn.querySelector('.btn-loading-spinner');
-  const confirmationDiv = document.getElementById('confirmation');
+        <!-- 3. Curriculum Section -->
+        <section id="curriculum" class="py-20 bg-background-light">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[var(--green-primary)]">Kurikulum Lengkap dari A Sampai Z</h2>
+                <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Pelajari semua yang Anda butuhkan untuk menjadi ahli di dunia kerja.</p>
+                <div class="max-w-3xl mx-auto">
+                    <!-- Accordion Item 1: Word -->
+                    <div class="border rounded-lg mb-4 bg-white shadow-sm">
+                        <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                            <span class="text-xl font-bold"><i class="fas fa-file-word mr-3 text-blue-600"></i>Microsoft Word: Dokumen Profesional</span>
+                            <i class="accordion-icon fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <ul class="p-6 pt-0 text-gray-700 list-disc list-inside">
+                                <li>Mengenal Office Word</li>
+                                <li>Page Setup</li>
+                                <li>Text</li>
+                                <li>Heading</li>
+                                <li>Daftar Isi</li>
+                                <li>Indent and Ruler</li>
+                                <li>Bullet and Numbering</li>
+                                <li>Spacing</li>
+                                <li>Tabel</li>
+                                <li>Page Number</li>
+                                <li>Header and Footer</li>
+                                <li>WordArt</li>
+                                <li>Picture and Shape</li>
+                                <li>Smart Art and Chart</li>
+                                <li>Equation and Symbol</li>
+                                <li>Arahan Sebelum Mengikuti Tes</li>
+                                <li>Tes Pilihan Ganda MS Word</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 2: Excel -->
+                    <div class="border rounded-lg mb-4 bg-white shadow-sm">
+                        <button class="accordion-button active w-full text-left p-6 flex justify-between items-center">
+                            <span class="text-xl font-bold"><i class="fas fa-file-excel mr-3 text-green-600"></i>Microsoft Excel: Dari Nol Hingga Master Data</span>
+                            <i class="accordion-icon fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content" style="max-height: 500px;">
+                            <ul class="p-6 pt-0 text-gray-700 list-disc list-inside">
+                                <li>Jenis-jenis Data Pada Excel Part 1</li>
+                                <li>Jenis-jenis Data Pada Excel Part 2</li>
+                                <li>Mengenal Baris dan Kolom Part 1</li>
+                                <li>Mengenal Baris dan Kolom Part 2</li>
+                                <li>Mengenal Baris dan Kolom Part 3</li>
+                                <li>Worksheet</li>
+                                <li>Paste Special Part 1</li>
+                                <li>Paste Special Part 2</li>
+                                <li>Remove Duplicate Part 1</li>
+                                <li>Remove Duplicate Part 2</li>
+                                <li>Common Function: SUM AVERAGE MIN MAX</li>
+                                <li>VLOOKUP dan HLOOKUP <span class="bg-yellow-200 text-yellow-800 text-xs font-bold ml-2 px-2 py-1 rounded-full">Populer</span></li>
+                                <li>PIVOT TABLE</li>
+                                <li>IF Tunggal dan Bertingkat Part 1</li>
+                                <li>IF Tunggal dan Bertingkat Part 2</li>
+                                <li>Chart</li>
+                                <li>Fungsi SUMIF SUMIFS</li>
+                                <li>Fungsi Pada Teks</li>
+                                <li>COUNT COUNTA COUNTIF COUNTIFS</li>
+                                <li>DATEDIF</li>
+                                <li>Tes Pilihan Ganda MS Excel</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 3: PowerPoint -->
+                    <div class="border rounded-lg mb-4 bg-white shadow-sm">
+                        <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                            <span class="text-xl font-bold"><i class="fas fa-file-powerpoint mr-3 text-red-600"></i>Microsoft PowerPoint: Presentasi yang Memukau</span>
+                            <i class="accordion-icon fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <ul class="p-6 pt-0 text-gray-700 list-disc list-inside">
+                                <li>Pengenalan PowerPoint (Menu dan Toolbar Bag.1)</li>
+                                <li>Pengenalan PowerPoint (Menu dan Toolbar Bag.2)</li>
+                                <li>Penyusunan Slide</li>
+                                <li>Menambahkan Teks</li>
+                                <li>Menambahkan Gambar</li>
+                                <li>Penggunaan Shape dan SmartArt</li>
+                                <li>Menambahkan Video dan Audio</li>
+                                <li>Animasi Dasar <span class="bg-blue-200 text-blue-800 text-xs font-bold ml-2 px-2 py-1 rounded-full">Wajib Dikuasai</span></li>
+                                <li>Transisi Slide</li>
+                                <li>Animasi Lanjutan</li>
+                                <li>Transisi Canggih</li>
+                                <li>Grafik dan Analisis Data</li>
+                                <li>Mengintegrasikan dengan Excel</li>
+                                <li>Menggunakan template Desain dan Layout</li>
+                                <li>Desain Slide Kreatif</li>
+                                <li>Mastering Slide Master</li>
+                                <li>Animasi dan Transisi Ekspert</li>
+                                <li>Data Visualisasi Lanjutan</li>
+                                <li>Powerpoint proposal bisnis</li>
+                                <li>Presentasi proposal kreatif</li>
+                                <li>Tes Pilihan Ganda MS Power Point</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  checkoutForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
+        <!-- 4. Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-white">
+             <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[var(--green-primary)]">Apa Kata Mereka yang Telah Bergabung?</h2>
+                <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Kepercayaan Anda adalah prioritas kami. Lihat kisah sukses mereka.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg relative">
+                        <i class="fas fa-quote-left text-6xl text-[var(--gold-accent)] opacity-10 absolute top-4 left-4"></i>
+                        <p class="relative z-10 mb-6 italic">"Materinya sangat mudah dipahami! Berkat sertifikat dari sini, saya berhasil dapat promosi di kantor. Terima kasih banyak!"</p>
+                        <div class="flex items-center">
+                            <img src="https://i.pravatar.cc/150?u=aisyah" class="w-12 h-12 rounded-full mr-4" alt="Foto Aisyah Putri">
+                            <div>
+                                <p class="font-bold">Aisyah Putri</p>
+                                <p class="text-sm text-gray-500">Marketing Supervisor</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg relative">
+                        <i class="fas fa-quote-left text-6xl text-[var(--gold-accent)] opacity-10 absolute top-4 left-4"></i>
+                        <p class="relative z-10 mb-6 italic">"Dulu saya kira Excel itu sulit. Setelah ikut kursus ini, VLOOKUP dan Pivot Table jadi makanan sehari-hari. Sangat direkomendasikan!"</p>
+                        <div class="flex items-center">
+                            <img src="https://i.pravatar.cc/150?u=budi" class="w-12 h-12 rounded-full mr-4" alt="Foto Budi Santoso">
+                            <div>
+                                <p class="font-bold">Budi Santoso</p>
+                                <p class="text-sm text-gray-500">Staff Administrasi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg relative">
+                         <i class="fas fa-quote-left text-6xl text-[var(--gold-accent)] opacity-10 absolute top-4 left-4"></i>
+                        <p class="relative z-10 mb-6 italic">"Sebagai mahasiswa, kursus ini sangat membantu saya mengerjakan tugas akhir dan persiapan magang. Ilmunya sangat aplikatif."</p>
+                        <div class="flex items-center">
+                            <img src="https://i.pravatar.cc/150?u=citra" class="w-12 h-12 rounded-full mr-4" alt="Foto Citra Lestari">
+                            <div>
+                                <p class="font-bold">Citra Lestari</p>
+                                <p class="text-sm text-gray-500">Mahasiswa Tingkat Akhir</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    // Pemeriksaan yang BENAR. Hanya akan error jika Anda LUPA mengganti URL.
-    if (SCRIPT_URL === 'PASTE_URL_BARU_ANDA_DI_SINI') {
-        alert('Error: Harap ganti SCRIPT_URL di dalam kode HTML dengan URL Web App Anda.');
-        return;
-    }
+        <!-- 5. CTA Section -->
+        <section id="cta" class="py-20 bg-[var(--green-primary)] text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">Siap Meningkatkan Karir Anda? Daftar Sekarang!</h2>
+                <p class="max-w-2xl mx-auto mb-8">Amankan posisi Anda hari ini dan nikmati harga spesial. Kesempatan tidak datang dua kali.</p>
+                <div class="max-w-lg mx-auto bg-white text-text-dark p-8 rounded-lg shadow-2xl">
+                    <!-- Form Submission Message -->
+                    <div id="form-message" class="hidden p-4 mb-4 rounded-md"></div>
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const wa = document.getElementById('wa').value.trim();
-    if (!name || !email || !wa) {
-      alert('Semua field wajib diisi!');
-      return;
-    }
-    btnText.style.display = 'none';
-    btnSpinner.style.display = 'inline-block';
-    submitBtn.disabled = true;
-    try {
-      const response = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nama: name, email: email, wa: wa })
-      });
-      if (!response.ok) {
-        throw new Error(`Server merespon dengan error: ${response.statusText}`);
-      }
-      const data = await response.json();
-      if (data.result === 'success') {
-        document.getElementById('confName').textContent = data.name;
-        document.getElementById('orderId').textContent = data.orderId;
-        document.getElementById('confHarga').textContent = data.harga;
-        document.getElementById('paymentDetails').textContent = data.tagihan;
-        document.getElementById('whatsappBtn').href = data.buyerWaLink;
-        checkoutForm.style.display = 'none';
-        confirmationDiv.style.display = 'block';
-        window.open(data.buyerWaLink, '_blank');
-      } else {
-        throw new Error(data.message || 'Terjadi kesalahan yang tidak diketahui.');
-      }
-    } catch (err) {
-      console.error('Fetch Error:', err);
-      alert('Gagal mendaftar: ' + err.message);
-    } finally {
-      btnText.style.display = 'inline-block';
-      btnSpinner.style.display = 'none';
-      submitBtn.disabled = false;
-    }
-  });
-</script>
+                    <form id="checkout-form">
+                        <div class="mb-4 text-left">
+                            <label for="name" class="block font-bold mb-1">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold-accent)]" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="mb-4 text-left">
+                            <label for="email" class="block font-bold mb-1">Email Aktif</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold-accent)]" placeholder="contoh@email.com" required>
+                        </div>
+                        <div class="mb-6 text-left">
+                            <label for="whatsapp" class="block font-bold mb-1">No. WhatsApp</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold-accent)]" placeholder="Contoh: 081234567890" required>
+                        </div>
+                        <button type="submit" id="submit-button" class="w-full gradient-gold text-white font-bold py-4 px-10 rounded-lg text-lg hover:opacity-90 transition duration-300 transform hover:scale-105">
+                            Lanjutkan ke Pembayaran
+                        </button>
+                    </form>
+                    <div class="flex justify-center items-center mt-6 text-gray-500 space-x-4">
+                        <span class="text-sm"><i class="fas fa-lock mr-1"></i> Transaksi Aman</span>
+                        <span class="text-sm"><i class="fas fa-shield-alt mr-1"></i> Data Terenkripsi</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- 6. About Us Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" class="rounded-lg shadow-xl w-full" alt="Tim pengajar yang profesional dan ramah">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--green-primary)]">Di Balik Layar EduOffice</h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                           Kami adalah tim praktisi profesional dengan pengalaman lebih dari 10 tahun di industri. Misi kami sederhana: membantu Anda menguasai skill yang benar-benar dibutuhkan di dunia kerja melalui metode yang efektif dan terjangkau.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                           Kami percaya setiap orang berhak mendapatkan kesempatan karir yang lebih baik, dan penguasaan Microsoft Office adalah salah satu kuncinya.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-text-dark text-white py-10">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 EduOffice. Semua Hak Cipta Dilindungi.</p>
+            <div class="mt-4 space-x-6">
+                <a href="#" class="hover:text-[var(--gold-accent)]"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-[var(--gold-accent)]"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-[var(--gold-accent)]"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+
+                // Tutup semua accordion lain
+                document.querySelectorAll('.accordion-button').forEach(otherButton => {
+                    if (otherButton !== button) {
+                        otherButton.classList.remove('active');
+                        otherButton.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+
+                // Buka/tutup accordion yang diklik
+                button.classList.toggle('active');
+                if (button.classList.contains('active')) {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                } else {
+                    accordionContent.style.maxHeight = null;
+                }
+            });
+        });
+
+        // Form submission logic
+        const form = document.getElementById('checkout-form');
+        const submitButton = document.getElementById('submit-button');
+        const formMessage = document.getElementById('form-message');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // 1. Tampilkan status loading
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim...`;
+            submitButton.disabled = true;
+
+            // 2. Kumpulkan data dari form
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                whatsapp: formData.get('whatsapp'),
+                timestamp: new Date().toISOString()
+            };
+
+            // 3. Kirim data ke Google Apps Script Web App
+            // GANTI URL_WEB_APP_ANDA dengan URL Web App dari Google Apps Script Anda
+            const webAppUrl = 'https://script.google.com/macros/s/AKfycbwXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/exec'; 
+            
+            try {
+                // **PENTING**: Bagian ini adalah simulasi.
+                // Untuk mengaktifkannya, Anda perlu membuat Web App di Google Apps Script
+                // yang menerima POST request dan menambahkan data ke Google Sheet.
+                // Script ini juga yang akan memicu pengiriman WhatsApp.
+                
+                // const response = await fetch(webAppUrl, {
+                //     method: 'POST',
+                //     mode: 'no-cors', // Penting untuk menghindari error CORS saat development
+                //     cache: 'no-cache',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify(data)
+                // });
+
+                // Simulasi pengiriman berhasil setelah 2 detik
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // 4. Tampilkan pesan sukses
+                formMessage.textContent = 'Terima kasih! Silakan periksa WhatsApp Anda dalam 1-2 menit untuk detail pembayaran.';
+                formMessage.className = 'p-4 mb-4 rounded-md bg-green-100 text-green-800';
+                formMessage.classList.remove('hidden');
+                form.reset();
+
+            } catch (error) {
+                // 5. Tampilkan pesan error jika gagal
+                console.error('Error submitting form:', error);
+                formMessage.textContent = 'Terjadi kesalahan. Silakan coba lagi atau hubungi kami.';
+                formMessage.className = 'p-4 mb-4 rounded-md bg-red-100 text-red-800';
+                formMessage.classList.remove('hidden');
+            } finally {
+                // 6. Kembalikan tombol ke keadaan semula
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+            }
+        });
+    </script>
 </body>
 </html>
