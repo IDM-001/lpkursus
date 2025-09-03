@@ -27,6 +27,11 @@
         .gradient-gold { background-image: linear-gradient(to right, #eab308, #F0A500); }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
         .accordion-button.active .accordion-icon { transform: rotate(180deg); }
+        /* PERBAIKAN FINAL: Memastikan warna teks di dalam form input DAN LABEL terlihat jelas */
+        #checkout-form input,
+        #checkout-form label {
+            color: var(--text-dark) !important;
+        }
     </style>
 </head>
 <body class="bg-background-light text-text-dark">
@@ -72,7 +77,8 @@
                 <a href="#curriculum" class="bg-[var(--gold-accent)] text-white font-bold py-4 px-10 rounded-lg text-lg hover:opacity-90 transition duration-300 transform hover:scale-105">
                     Lihat Materi Kursus
                 </a>
-                <p class="mt-4 text-sm">✨ Diskon 50% untuk 100 pendaftar pertama!</p>
+                <!-- PERBAIKAN: Teks harga promo diperbarui -->
+                <p class="mt-4 text-lg font-semibold">Ayo Bergabung! Dari Harga Normal <s class="text-red-300/80">Rp 350.000</s> Menjadi Hanya <span class="text-[var(--gold-accent)]">Rp 99.000</span></p>
             </div>
         </section>
 
@@ -142,11 +148,11 @@
                     </div>
                     <!-- Accordion Item 2: Excel -->
                     <div class="border rounded-lg mb-4 bg-white shadow-sm">
-                        <button class="accordion-button active w-full text-left p-6 flex justify-between items-center">
+                        <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
                             <span class="text-xl font-bold"><i class="fas fa-file-excel mr-3 text-green-600"></i>Microsoft Excel: Dari Nol Hingga Master Data</span>
                             <i class="accordion-icon fas fa-chevron-down transition-transform duration-300"></i>
                         </button>
-                        <div class="accordion-content" style="max-height: 500px;">
+                        <div class="accordion-content">
                             <ul class="p-6 pt-0 text-gray-700 list-decimal list-inside space-y-2">
                                 <li>Jenis-jenis Data Pada Excel Part 1</li>
                                 <li>Jenis-jenis Data Pada Excel Part 2</li>
@@ -326,14 +332,18 @@
         document.querySelectorAll('.accordion-button').forEach(button => {
             button.addEventListener('click', () => {
                 const accordionContent = button.nextElementSibling;
+                // Tutup semua accordion lain sebelum membuka yang ini
                 document.querySelectorAll('.accordion-button').forEach(otherButton => {
                     if (otherButton !== button) {
                         otherButton.classList.remove('active');
                         otherButton.nextElementSibling.style.maxHeight = null;
                     }
                 });
+                
                 button.classList.toggle('active');
+
                 if (button.classList.contains('active')) {
+                    // Set max-height sesuai dengan tinggi konten sebenarnya
                     accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
                 } else {
                     accordionContent.style.maxHeight = null;
@@ -346,10 +356,7 @@
         const submitButton = document.getElementById('submit-button');
         const formMessage = document.getElementById('form-message');
         
-        // ================== PERUBAHAN PENTING DI SINI ==================
-        // URL sekarang menunjuk ke Netlify Function (resepsionis), BUKAN Google App Script.
         const webAppUrl = '/.netlify/functions/contact'; 
-        // =============================================================
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -401,3 +408,4 @@
     </script>
 </body>
 </html>
+
