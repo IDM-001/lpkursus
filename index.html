@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -58,11 +58,56 @@
         .gradient-gold { background-image: linear-gradient(to right, #eab308, #F0A500); }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
         .accordion-button.active .accordion-icon { transform: rotate(180deg); }
-        /* PERBAIKAN FINAL: Memastikan warna teks di dalam form input DAN LABEL terlihat jelas */
         #checkout-form input,
         #checkout-form label {
             color: var(--text-dark) !important;
         }
+
+        /* --- PENAMBAHAN: KODE ANIMASI NEON BORDER --- */
+        .animated-border {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animated-border::before {
+            content: "";
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            border-radius: 10px; 
+            background: linear-gradient(
+                270deg,
+                #ff0000, #ff7300, #fffb00, #48ff00,
+                #00ffd5, #002bff, #7a00ff, #ff00ab,
+                #ff0000
+            );
+            background-size: 400%;
+            z-index: -2;
+            animation: rainbow 8s linear infinite;
+        }
+
+        .animated-border::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 8px; 
+            z-index: -1;
+        }
+        
+        .animated-border-benefit::after {
+            background-color: #F9FAFB; /* Warna bg-gray-50 */
+        }
+        
+        .animated-border-cta::after {
+            background-color: #FFFFFF; /* Warna bg-white */
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* --- AKHIR KODE ANIMASI --- */
+
     </style>
 </head>
 <body class="bg-background-light text-text-dark">
@@ -70,7 +115,6 @@
     <!-- Header / Navigation -->
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- PERUBAHAN: EduOffice menjadi HOME -->
             <a href="#" class="text-2xl font-bold text-[var(--green-primary)]">HOME</a>
             <div class="hidden md:flex space-x-8">
                 <a href="#benefits" class="hover:text-[var(--gold-accent)] transition duration-300">Benefit</a>
@@ -86,11 +130,11 @@
             </button>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-white py-2">
-            <a href="#benefits" class="block text-center py-2 px-4 text-sm hover:bg-gray-100">Benefit</a>
-            <a href="#curriculum" class="block text-center py-2 px-4 text-sm hover:bg-gray-100">Materi</a>
-            <a href="#testimonials" class="block text-center py-2 px-4 text-sm hover:bg-gray-100">Testimoni</a>
-            <a href="#about" class="block text-center py-2 px-4 text-sm hover:bg-gray-100">Tentang Kami</a>
-            <a href="#cta" class="block text-center py-3 px-4 text-sm bg-[var(--gold-accent)] text-white font-bold">Daftar Sekarang</a>
+            <a href="#benefits" class="block text-center py-2 px-4 text-base hover:bg-gray-100">Benefit</a>
+            <a href="#curriculum" class="block text-center py-2 px-4 text-base hover:bg-gray-100">Materi</a>
+            <a href="#testimonials" class="block text-center py-2 px-4 text-base hover:bg-gray-100">Testimoni</a>
+            <a href="#about" class="block text-center py-2 px-4 text-base hover:bg-gray-100">Tentang Kami</a>
+            <a href="#cta" class="block text-center py-3 px-4 text-base bg-[var(--gold-accent)] text-white font-bold">Daftar Sekarang</a>
         </div>
     </header>
 
@@ -100,53 +144,47 @@
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Suasana belajar kursus online yang nyaman">
             <div class="container mx-auto px-6 text-center relative z-10">
-                <!-- SEO: H1 adalah judul utama halaman -->
                 <h1 class="text-4xl md:text-6xl font-black leading-tight mb-4">
                     Kuasai Microsoft Office, Dapatkan Sertifikasi Resmi, Tingkatkan Karir Anda.
                 </h1>
-                <!-- PERUBAHAN: Copywriting di Hero Section -->
-                <p class="text-xl md:text-2l max-w-3xl mx-auto mb-8">
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
                     Kursus online dengan konsep belajar fleksibel, materi sistematis, dan bersertifikat resmi dari LKP.
                 </p>
                 <a href="#curriculum" class="bg-[var(--gold-accent)] text-white font-bold py-4 px-10 rounded-lg text-lg hover:opacity-90 transition duration-300 transform hover:scale-105">
                     Lihat Materi Kursus
                 </a>
-                <br></br>
-                <p class="mt-4 text-lg font-semibold">Ayo Bergabung! Dari Harga Normal <s class="text-blue-500/100">Rp 350.000</s> Menjadi Hanya <span class="text-[var(--gold-accent)]">Rp 99.000</span></p>
+                <p class="mt-4 text-lg font-semibold">Ayo Bergabung! Dari Harga Normal <s class="text-red-300/80">Rp 350.000</s> Menjadi Hanya <span class="text-[var(--gold-accent)]">Rp 99.000</span></p>
             </div>
         </section>
 
         <!-- 2. Benefits Section -->
         <section id="benefits" class="py-20 bg-white">
             <div class="container mx-auto px-6 text-center">
-                <!-- PERUBAHAN: Judul & Subjudul Benefit -->
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--green-primary)]">Kenapa Harus Ikut Kursus Ini?</h2>
                 <p> <strong> <class="text-gray-600 max-w-2xl mx-auto mb-12"><i class="fa-solid fa-angles-down"></i></p></strong>
                 <br></br>
                 <br></br>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <!-- PERUBAHAN: Animasi diterapkan di sini -->
+                    <div class="animated-border animated-border-benefit bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                         <i class="fas fa-certificate text-4xl text-[var(--gold-accent)] mb-4"></i>
                         <h3 class="text-xl font-bold mb-2">Sertifikasi Resmi</h3>
-                        <p class="text-gray-600">Tingkatkan nilai CV Anda dengan sertifikat resmi yang diakui secara global.</p>
+                        <p class="text-gray-600 text-base leading-relaxed">Tingkatkan nilai CV Anda dengan sertifikat resmi yang diakui secara global.</p>
                     </div>
-                    <!-- PERUBAHAN: Benefit Box 2 -->
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="animated-border animated-border-benefit bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                         <i class="fas fa-file-word text-4xl text-[var(--gold-accent)] mb-4"></i>
                         <h3 class="text-xl font-bold mb-2"> Microsoft Word </h3>
-                        <p class="text-gray-600">Kuasai pembuatan dokumen, surat, laporan, dan format resmi sesuai standar instansi.</p>
+                        <p class="text-gray-600 text-base leading-relaxed">Kuasai pembuatan dokumen, surat, laporan, dan format resmi sesuai standar instansi.</p>
                     </div>
-                    <!-- PERUBAHAN: Benefit Box 3 -->
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="animated-border animated-border-benefit bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                         <i class="fas fa-file-excel text-4xl text-[var(--gold-accent)] mb-4"></i>
                         <h3 class="text-xl font-bold mb-2">Microsoft Excel</h3>
-                        <p class="text-gray-600">Pembuatan rumus, table, grafik, hingga pembuatan laporan data & statistik.</p>
+                        <p class="text-gray-600 text-base leading-relaxed">Pembuatan rumus, table, grafik, hingga pembuatan laporan data & statistik.</p>
                     </div>
-                    <!-- PERUBAHAN: Benefit Box 4 -->
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="animated-border animated-border-benefit bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                         <i class="fas fa-file-powerpoint text-4xl text-[var(--gold-accent)] mb-4"></i>
                         <h3 class="text-xl font-bold mb-2">Microsoft PowerPoint</h3>
-                        <p class="text-gray-600">Cara membuat presentasi profesional yang menarik dan efektif untuk kerja atau sekolah.</p>
+                        <p class="text-gray-600 text-base leading-relaxed">Cara membuat presentasi profesional yang menarik dan efektif untuk kerja atau sekolah.</p>
                     </div>
                 </div>
             </div>
@@ -156,7 +194,7 @@
         <section id="curriculum" class="py-20 bg-background-light">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[var(--green-primary)]">Kurikulum Lengkap dari A Sampai Z</h2>
-                <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Pelajari semua yang Anda butuhkan untuk menjadi ahli di dunia kerja.</p>
+                <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12 text-base md:text-lg">Pelajari semua yang Anda butuhkan untuk menjadi ahli di dunia kerja.</p>
                 <div class="max-w-3xl mx-auto">
                     <!-- Accordion Item 1: Word -->
                     <div class="border rounded-lg mb-4 bg-white shadow-sm">
@@ -165,7 +203,7 @@
                             <i class="accordion-icon fas fa-chevron-down transition-transform duration-300"></i>
                         </button>
                         <div class="accordion-content">
-                             <ul class="p-6 pt-0 text-gray-700 list-decimal list-inside space-y-2">
+                             <ul class="p-6 pt-0 text-gray-700 list-decimal list-inside space-y-3 text-base">
                                 <li>Mengenal Office Word</li>
                                 <li>Page Setup</li>
                                 <li>Text</li>
@@ -193,7 +231,7 @@
                             <i class="accordion-icon fas fa-chevron-down transition-transform duration-300"></i>
                         </button>
                         <div class="accordion-content">
-                            <ul class="p-6 pt-0 text-gray-700 list-decimal list-inside space-y-2">
+                            <ul class="p-6 pt-0 text-gray-700 list-decimal list-inside space-y-3 text-base">
                                 <li>Jenis-jenis Data Pada Excel Part 1</li>
                                 <li>Jenis-jenis Data Pada Excel Part 2</li>
                                 <li>Mengenal Baris dan Kolom Part 1</li>
@@ -225,7 +263,7 @@
                             <i class="accordion-icon fas fa-chevron-down transition-transform duration-300"></i>
                         </button>
                         <div class="accordion-content">
-                            <ul class="p-6 pt-0 text-gray-700 list-decimal list-inside space-y-2">
+                            <ul class="p-6 pt-0 text-gray-700 list-decimal list-inside space-y-3 text-base">
                                 <li>Pengenalan PowerPoint (Menu dan Toolbar Bag.1)</li>
                                 <li>Pengenalan PowerPoint (Menu dan Toolbar Bag.2)</li>
                                 <li>Penyusunan Slide</li>
@@ -251,7 +289,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- PENAMBAHAN: CTA di bawah materi -->
                 <div class="max-w-3xl mx-auto text-center mt-12">
                     <p class="text-xl text-gray-700 mb-6"><strong>Siap tingkatkan skill MS Office kamu dan dapatkan sertifikat resmi?</strong></p>
                     <a href="#cta" style="background-color: #005A9E;" class="text-white font-bold py-3 px-8 rounded-lg text-lg hover:opacity-90 transition duration-300 inline-block">
@@ -265,38 +302,38 @@
         <section id="testimonials" class="py-20 bg-white">
              <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[var(--green-primary)]">Apa Kata Mereka yang Telah Bergabung?</h2>
-                <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Kepercayaan Anda adalah prioritas kami. Lihat kisah sukses mereka.</p>
+                <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12 text-base md:text-lg">Kepercayaan Anda adalah prioritas kami. Lihat kisah sukses mereka.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-gray-50 p-8 rounded-lg shadow-lg relative">
                         <i class="fas fa-quote-left text-6xl text-[var(--gold-accent)] opacity-10 absolute top-4 left-4"></i>
-                        <p class="relative z-10 mb-6 italic">"Materinya sangat mudah dipahami! Berkat sertifikat dari sini, saya berhasil dapat promosi di kantor. Terima kasih banyak!"</p>
+                        <p class="relative z-10 mb-6 italic text-base">"Materinya sangat mudah dipahami! Berkat sertifikat dari sini, saya berhasil dapat promosi di kantor. Terima kasih banyak!"</p>
                         <div class="flex items-center">
                             <img src="https://i.pravatar.cc/150?u=aisyah" class="w-12 h-12 rounded-full mr-4" alt="Foto Aisyah Putri, seorang Marketing Supervisor">
                             <div>
                                 <p class="font-bold">Aisyah Putri</p>
-                                <p class="text-sm text-gray-500">Marketing Supervisor</p>
+                                <p class="text-base text-gray-500">Marketing Supervisor</p>
                             </div>
                         </div>
                     </div>
                     <div class="bg-gray-50 p-8 rounded-lg shadow-lg relative">
                         <i class="fas fa-quote-left text-6xl text-[var(--gold-accent)] opacity-10 absolute top-4 left-4"></i>
-                        <p class="relative z-10 mb-6 italic">"Dulu saya kira Excel itu sulit. Setelah ikut kursus ini, VLOOKUP dan Pivot Table jadi makanan sehari-hari. Sangat direkomendasikan!"</p>
+                        <p class="relative z-10 mb-6 italic text-base">"Dulu saya kira Excel itu sulit. Setelah ikut kursus ini, VLOOKUP dan Pivot Table jadi makanan sehari-hari. Sangat direkomendasikan!"</p>
                         <div class="flex items-center">
                             <img src="https://i.pravatar.cc/150?u=budi" class="w-12 h-12 rounded-full mr-4" alt="Foto Budi Santoso, seorang Staff Administrasi">
                             <div>
                                 <p class="font-bold">Budi Santoso</p>
-                                <p class="text-sm text-gray-500">Staff Administrasi</p>
+                                <p class="text-base text-gray-500">Staff Administrasi</p>
                             </div>
                         </div>
                     </div>
                     <div class="bg-gray-50 p-8 rounded-lg shadow-lg relative">
                          <i class="fas fa-quote-left text-6xl text-[var(--gold-accent)] opacity-10 absolute top-4 left-4"></i>
-                        <p class="relative z-10 mb-6 italic">"Sebagai mahasiswa, kursus ini sangat membantu saya mengerjakan tugas akhir dan persiapan magang. Ilmunya sangat aplikatif."</p>
+                        <p class="relative z-10 mb-6 italic text-base">"Sebagai mahasiswa, kursus ini sangat membantu saya mengerjakan tugas akhir dan persiapan magang. Ilmunya sangat aplikatif."</p>
                         <div class="flex items-center">
                             <img src="https://i.pravatar.cc/150?u=citra" class="w-12 h-12 rounded-full mr-4" alt="Foto Citra Lestari, seorang Mahasiswa">
                             <div>
                                 <p class="font-bold">Citra Lestari</p>
-                                <p class="text-sm text-gray-500">Mahasiswa Tingkat Akhir</p>
+                                <p class="text-base text-gray-500">Mahasiswa Tingkat Akhir</p>
                             </div>
                         </div>
                     </div>
@@ -307,26 +344,26 @@
         <!-- 5. CTA Section -->
         <section id="cta" class="py-20 bg-[var(--green-primary)] text-white">
             <div class="container mx-auto px-6 text-center">
-                <!-- PENAMBAHAN: Judul di CTA Form (Bagian Atas) -->
                 <div class="max-w-lg mx-auto mb-8">
                     <h2 class="text-3xl md:text-4xl font-black mb-4">Ayo Mulai Perjalanan Belajarmu Hari Ini!</h2>
-                    <p>
+                    <p class="text-lg">
                         Dengan hanya <span class="font-bold text-[var(--gold-accent)]">Rp99.000</span> dari harga normal <s class="text-red-300/80">Rp. 350.000</s>, Kamu sudah bisa menguasai Ms Office, dapat sertifikat resmi, dan siap bersaing di dunia kerja.
                     </p>
                 </div>
-                <div class="max-w-lg mx-auto bg-white text-text-dark p-8 rounded-lg shadow-2xl">
+                <!-- PERUBAHAN: Animasi diterapkan di sini -->
+                <div class="animated-border animated-border-cta max-w-lg mx-auto bg-white text-text-dark p-8 rounded-lg shadow-2xl">
                     <div id="form-message" class="hidden p-4 mb-4 rounded-md"></div>
                     <form id="checkout-form">
                         <div class="mb-4 text-left">
-                            <label for="name" class="block font-bold mb-1">Nama Lengkap</label>
+                            <label for="name" class="block font-bold mb-1 text-base">Nama Lengkap</label>
                             <input type="text" id="name" name="name" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold-accent)]" placeholder="Masukkan nama Anda" required>
                         </div>
                         <div class="mb-4 text-left">
-                            <label for="email" class="block font-bold mb-1">Email Aktif</label>
+                            <label for="email" class="block font-bold mb-1 text-base">Email Aktif</label>
                             <input type="email" id="email" name="email" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold-accent)]" placeholder="contoh@email.com" required>
                         </div>
                         <div class="mb-6 text-left">
-                            <label for="whatsapp" class="block font-bold mb-1">No. WhatsApp</label>
+                            <label for="whatsapp" class="block font-bold mb-1 text-base">No. WhatsApp</label>
                             <input type="tel" id="whatsapp" name="whatsapp" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--gold-accent)]" placeholder="Contoh: 081234567890" required>
                         </div>
                         <button type="submit" id="submit-button" class="w-full gradient-gold text-white font-bold py-4 px-10 rounded-lg text-lg hover:opacity-90 transition duration-300 transform hover:scale-105">
@@ -334,19 +371,18 @@
                         </button>
                     </form>
                     <div class="flex justify-center items-center mt-6 text-gray-500 space-x-4">
-                        <span class="text-sm"><i class="fas fa-lock mr-1"></i> Transaksi Aman</span>
-                        <span class="text-sm"><i class="fas fa-shield-alt mr-1"></i> Data Terenkripsi</span>
+                        <span class="text-base"><i class="fas fa-lock mr-1"></i> Transaksi Aman</span>
+                        <span class="text-base"><i class="fas fa-shield-alt mr-1"></i> Data Terenkripsi</span>
                     </div>
                 </div>
             </div>
         </section>
-
 </main>
 
     <!-- Footer -->
     <footer class="bg-text-dark text-gold py-10">
         <div class="container mx-auto px-6 text-center">
-            <p><strong>&copy; AKSYSTEM Kursus Digital.</strong></p>
+            <p class="text-base"><strong>&copy; AKSYSTEM Kursus Digital.</strong></p>
         </div>
     </footer>
 
@@ -360,7 +396,6 @@
         document.querySelectorAll('.accordion-button').forEach(button => {
             button.addEventListener('click', () => {
                 const accordionContent = button.nextElementSibling;
-                // Tutup semua accordion lain sebelum membuka yang ini
                 document.querySelectorAll('.accordion-button').forEach(otherButton => {
                     if (otherButton !== button) {
                         otherButton.classList.remove('active');
@@ -371,7 +406,6 @@
                 button.classList.toggle('active');
 
                 if (button.classList.contains('active')) {
-                    // Set max-height sesuai dengan tinggi konten sebenarnya
                     accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
                 } else {
                     accordionContent.style.maxHeight = null;
